@@ -149,6 +149,74 @@ export default function Home() {
     }
   }
 
+  //emojis for sentiment
+  const getSentimentEmoji = () => {
+    switch (sentiment?.toLowerCase()) {
+      case "positive":
+        return "Feeling great! 😊"; // or "👍" or "😄"
+      case "negative":
+        return "Not a good day 😞"; // or "👎" or "😠"
+      case "neutral":
+      default:
+        return "Just okay 🤔"; // or "😐"
+    }
+  };
+
+  //GIF for sentiments
+  const getSentimentGif = () => {
+    switch (sentiment?.toLowerCase()) {
+      case "positive":
+        return (
+          <picture>
+          <source
+            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.gif"
+            alt="☺"
+            width="32"
+            height="32"
+            className="inline-block align-middle"
+          />
+        </picture>
+        );
+      case "negative":
+        return (
+          <picture>
+          <source
+            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.gif"
+            alt="☺"
+            width="32"
+            height="32"
+            className="inline-block align-middle"
+          />
+        </picture>
+        );
+      case "neutral":
+      default:
+        return (
+          <picture>
+          <source
+            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.webp"
+            type="image/webp"
+          />
+          <img
+            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.gif"
+            alt="☺"
+            width="32"
+            height="32"
+            className="inline-block align-middle"
+          />
+        </picture>
+        );
+    }
+  };
+
   // Get icon component based on icon name
   const getIconComponent = (iconName: string) => {
     switch (iconName.toLowerCase()) {
@@ -243,12 +311,19 @@ export default function Home() {
             <>
               <CardContent className="pt-6 space-y-6">
                 <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">Your entry</h2>
+                  <div className="flex items-center justify-between mb-2">
+                  <h2 className="font-medium text-[#2D3142]">Your entry</h2>
+                  <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
+                    Write new entry
+                  </Button>
+                </div>
                   <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start">
                         <p>{journalEntry}</p>
-                        {sentiment && <Badge className={`ml-2 ${getSentimentColor()}`}>{sentiment}</Badge>}
+                        {sentiment && (
+  <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
+)}
                       </div>
                     </CardContent>
                   </Card>
@@ -279,13 +354,11 @@ export default function Home() {
                           key={index}
                           className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
                         >
-                          <CardContent className="p-4">
-                            <div className="flex flex-col items-center text-center p-3">
-                              <div className="mb-3">{getIconComponent(action.icon)}</div>
-                              <div>
-                                <h3 className="font-medium text-[#2D3142] mb-1">{action.title}</h3>
-                                <p className="text-[#5D6470] text-sm">{action.description}</p>
-                              </div>
+                          <CardContent className="p-4 flex flex-col items-start gap-3">
+                            {getIconComponent(action.icon)}
+                            <div>
+                              <h3 className="text-[#2D3142] font-semibold">{action.title}</h3>
+                              <p className="text-sm text-[#5D6470]">{action.description}</p>
                             </div>
                           </CardContent>
                         </Card>
@@ -310,9 +383,7 @@ export default function Home() {
 
               <CardFooter className="flex justify-between">
                 <span className="text-[#5D6470] text-[14px]">{currentDate}</span>
-                <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
-                  Write new entry
-                </Button>
+
               </CardFooter>
             </>
           )}
