@@ -1,2 +1,2 @@
-# SentimentAnalysis
+# Sentimo
 SmartUIDevices Project
