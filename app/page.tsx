@@ -1,3 +1,13 @@
+/*
+Author: Lorenzo Menil
+Last Modified by: Lorenzo Menil
+Date Last Modified: 2025-04-13
+Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
+Revision History:
+    0.1 - 2025-04-13: Initial creation.
+    0.2 - 2025-04-13: 
+*/
+
 "use client"
 
 import { useState, useRef, useEffect } from "react"
@@ -243,7 +253,7 @@ export default function Home() {
                     </CardContent>
                   </Card>
                 </div>
-
+                
                 <div>
                   <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
                   <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
@@ -252,8 +262,50 @@ export default function Home() {
                     </CardContent>
                   </Card>
                 </div>
+                <div>
+                  <h2 className="font-medium text-[#2D3142] mb-2">Suggested actions</h2>
 
-                
+                  <div className="flex flex-col">
+                    <div
+                      ref={scrollContainerRef}
+                      className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
+                      style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                      }}
+                    >
+                      {displayedActions.map((action, index) => (
+                        <Card
+                          key={index}
+                          className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
+                        >
+                          <CardContent className="p-4">
+                            <div className="flex flex-col items-center text-center p-3">
+                              <div className="mb-3">{getIconComponent(action.icon)}</div>
+                              <div>
+                                <h3 className="font-medium text-[#2D3142] mb-1">{action.title}</h3>
+                                <p className="text-[#5D6470] text-sm">{action.description}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+
+                    <div className="flex justify-center mt-4 gap-2">
+                      {displayedActions.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => scrollToCard(index)}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                            activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
+                          }`}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </CardContent>
 
               <CardFooter className="flex justify-between">
