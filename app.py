@@ -1,3 +1,14 @@
+"""
+Author: Lorenzo Menil
+Last Modified by: Lorenzo Menil
+Date Last Modified: 2025-04-13
+Program Description: This is the primary backend module for a journaling application built with Flask. It provides API endpoints to allow users to submit their journal entries.
+Revision History:
+    0.1 - 2025-04-13: Initial creation.
+    0.2 - 2025-04-13: 
+"""
+
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests

@@ -1,3 +1,13 @@
+/*
+Author: Lorenzo Menil
+Last Modified by: Lorenzo Menil
+Date Last Modified: 2025-04-13
+Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
+Revision History:
+    0.1 - 2025-04-13: Initial creation.
+    0.2 - 2025-04-13: 
+*/
+
 "use client"
 
 import { useState, useRef, useEffect } from "react"
