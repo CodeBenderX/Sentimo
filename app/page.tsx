@@ -1,11 +1,14 @@
 /*
 Author: Lorenzo Menil
-Last Modified by: Lorenzo Menil, Bianca Salunga
+Last Modified by: Lorenzo Menil, Bianca Salunga, 
 Date Last Modified: 2025-04-13
 Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
 Revision History:
     0.1 - 2025-04-13: Initial creation.
-    0.2 - 2025-04-13: 
+    0.2 - 2025-04-13: feat: Recommendations/suggested actions
+    0.3 - 2025-04-13: feat: Sentiment emojis and GIFs, enhance journal entry responses
+    0.4 - 2025-04-13: feat: Added Detection of concerning content with immediate feedback and added support resources.
+  
 */
 
 "use client"
@@ -16,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { AlertCircleIcon } from "lucide-react"
+import { AlertCircleIcon, AlertTriangle, Phone, Globe } from 'lucide-react'
 
 // Import icons for suggested actions
 import {
@@ -39,6 +42,18 @@ interface SuggestedAction {
   icon: string
 }
 
+// Interface for mental health resources
+interface MentalHealthResource {
+  message: string
+  hotlines: Array<{
+    name: string
+    phone: string
+    website: string
+  }>
+  advice: string
+}
+
+
 export default function Home() {
   const [journalEntry, setJournalEntry] = useState("")
   const [submitted, setSubmitted] = useState(false)
@@ -49,6 +64,9 @@ export default function Home() {
   const [sentiment, setSentiment] = useState("")
   const [error, setError] = useState("")
   const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>([])
+  const [isConcerning, setIsConcerning] = useState(false)
+  const [resources, setResources] = useState<MentalHealthResource | null>(null)
+  const [showWarning, setShowWarning] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -57,10 +75,42 @@ export default function Home() {
     year: "numeric",
   })
 
+  // Function to detect concerning content on the frontend
+  const detectConcerningContent = (text: string): boolean => {
+    const concerningPatterns = [
+      // Suicidal thoughts
+      /\b(suicid(e|al)|kill (myself|me)|end (my|this) life|don't want to (live|be alive)|take my (own )?life)\b/i,
+      // Self-harm
+      /\b(cut(ting)? myself|harm(ing)? myself|hurt(ing)? myself|self[- ]harm)\b/i,
+      // Severe depression indicators
+      /\b(no reason to live|better off dead|can't go on|give up on life|no way out)\b/i,
+      // Direct statements
+      /\b(want to die|planning to die|going to end it|saying goodbye|final note|last message)\b/i,
+      // Additional patterns
+      /\b(i want to die|i'm going to die|scared of dying|feel like i'm going to die)\b/i,
+      // Violent thoughts toward others
+      /\b(kill you|want to kill|going to kill)\b/i,
+    ]
+
+    return concerningPatterns.some((pattern) => pattern.test(text))
+  }
+
+  // Check for concerning content as user types
+  useEffect(() => {
+    if (journalEntry.trim()) {
+      const isConcerningEntry = detectConcerningContent(journalEntry)
+      setShowWarning(isConcerningEntry)
+    } else {
+      setShowWarning(false)
+    }
+  }, [journalEntry])
+
   const handleSubmit = async () => {
     if (journalEntry.trim()) {
       setIsLoading(true)
       setError("")
+      setIsConcerning(false)
+      setResources(null)
 
       try {
         const response = await fetch("/api/journal", {
@@ -75,8 +125,10 @@ export default function Home() {
 
         if (data.success) {
           setAiResponse(data.response)
-          setSentiment(data.sentiment || "Neutral")
+          setSentiment(data.sentiment || "Balanced")
           setSuggestedActions(data.suggestions || [])
+          setIsConcerning(data.is_concerning || false)
+          setResources(data.resources || null)
           setApiConnected(true)
         } else {
           setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
@@ -99,7 +151,10 @@ export default function Home() {
     setAiResponse("")
     setSentiment("")
     setSuggestedActions([])
+    setIsConcerning(false)
+    setResources(null)
     setError("")
+    setShowWarning(false)
   }
 
   // Handle scroll to update active dot
@@ -264,8 +319,59 @@ export default function Home() {
     },
   ]
 
+    // Default mental health resources
+    const defaultResources = {
+      message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+      hotlines: [
+        {
+          name: "National Suicide Prevention Lifeline",
+          phone: "988 or 1-800-273-8255",
+          website: "https://suicidepreventionlifeline.org/",
+        },
+        {
+          name: "Crisis Text Line",
+          phone: "Text HOME to 741741",
+          website: "https://www.crisistextline.org/",
+        },
+      ],
+      advice:
+        "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
+    }
+
   // Use suggested actions from API or defaults
   const displayedActions = suggestedActions.length > 0 ? suggestedActions : defaultSuggestedActions
+
+  // Render mental health resources
+  const renderMentalHealthResources = (resources: MentalHealthResource) => {
+    return (
+      <div className="space-y-4 mt-4 border-t pt-4 border-amber-200">
+        <h3 className="font-medium text-amber-800">Support Resources</h3>
+        <div className="space-y-4">
+          {resources.hotlines.map((hotline, index) => (
+            <div key={index} className="flex flex-col space-y-1">
+              <h4 className="font-medium text-[#2D3142]">{hotline.name}</h4>
+              <div className="flex items-center text-[#5D6470] text-sm">
+                <Phone className="h-4 w-4 mr-2 text-amber-600" />
+                <span>{hotline.phone}</span>
+              </div>
+              <div className="flex items-center text-[#5D6470] text-sm">
+                <Globe className="h-4 w-4 mr-2 text-amber-600" />
+                <a
+                  href={hotline.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {hotline.website}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-[#2D3142] text-sm">{resources.advice}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -277,7 +383,7 @@ export default function Home() {
       </div>
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
-        
+      {/* Update logo here   */}
 
         <Card className="w-full max-w-2xl border-none shadow-lg">
           {!submitted ? (
@@ -288,6 +394,16 @@ export default function Home() {
                 </Badge>
               </CardHeader>
               <CardContent className="pt-4">
+              {showWarning && (
+              <Alert variant="warning" className="bg-amber-50 border-amber-200">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+              <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
+              <AlertDescription className="text-amber-700">
+                We've noticed your entry contains content that suggests you might be going through a difficult
+                time. When you submit, we'll provide resources that may help. Remember, you're not alone.
+              </AlertDescription>
+              </Alert>
+            )}
                 <Textarea
                   placeholder="Write your thoughts here..."
                   className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
@@ -333,10 +449,21 @@ export default function Home() {
                   <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
                   <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
                     <CardContent className="p-4">
-                      <p>{aiResponse || "I'm glad to hear from you today! How can I help support you?"}</p>
+                      <div className="space-y-4">
+                        {/* AI Response */}
+                        <p className="text-[#2D3142]">
+                          {aiResponse || "I'm glad to hear from you today! How can I help support you?"}
+                        </p>
+
+                        {/* Mental Health Resources (if concerning content detected) */}
+                        {isConcerning &&
+                          (resources || defaultResources) &&
+                          renderMentalHealthResources(resources || defaultResources)}
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
+
                 <div>
                   <h2 className="font-medium text-[#2D3142] mb-2">Suggested actions</h2>
 
