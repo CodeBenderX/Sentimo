@@ -426,9 +426,13 @@ export default function Home() {
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
         {/* Update logo here   */}
-
-
-
+        <Image
+          src="/sentimo1.png"
+          alt="Sentimo Logo"
+          width={128}
+          height={128}
+          className="absolute top-10 center"
+        />
         <Card className="w-full max-w-2xl border-none shadow-lg">
           {!submitted ? (
             <>
