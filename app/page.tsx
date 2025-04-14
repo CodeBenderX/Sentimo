@@ -409,7 +409,7 @@ export default function Home() {
           alt="Sentimo Logo"
           width={128}
           height={128}
-          className="absolute top-10 left-10"
+          className="absolute top-10 center"
         />
 
         <Card className="w-full max-w-2xl border-none shadow-lg">
