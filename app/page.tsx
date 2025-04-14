@@ -8,6 +8,7 @@ Revision History:
     0.2 - 2025-04-13: feat: Recommendations/suggested actions
     0.3 - 2025-04-13: feat: Sentiment emojis and GIFs, enhance journal entry responses
     0.4 - 2025-04-13: feat: Added Detection of concerning content with immediate feedback and added support resources.
+    0.5 - 2025-04-14: feat: Integrated mental health resources directly into the response section
   
 */
 
@@ -131,25 +132,43 @@ export default function Home() {
         const data = await response.json();
 
         if (data.success) {
-          setAiResponse(data.response);
-          setSentiment(data.sentiment || "Balanced");
-          setSuggestedActions(data.suggestions || []);
-          setIsConcerning(data.is_concerning || false);
-          setResources(data.resources || null);
-          setApiConnected(true);
+
+          setAiResponse(data.response)
+          setSentiment(data.sentiment || "Balanced")
+          setSuggestedActions(data.suggestions || [])
+
+          const textHasConcerningContent = detectConcerningContent(journalEntry)
+
+          setIsConcerning(data.is_concerning === true || textHasConcerningContent)
+
+          if (data.resources) {
+            setResources(data.resources)
+          } else if (data.is_concerning === true || textHasConcerningContent) {
+            // If no resources provided but content is concerning, use defaults
+            setResources(defaultResources)
+          }
+
+          setApiConnected(true)
         } else {
-          setAiResponse(
-            data.fallbackResponse ||
-              "I couldn't process your journal entry. Please try again."
-          );
-          setError("Failed to connect to LM Studio API");
+          setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
+          setError("Failed to connect to LM Studio API")
+          const textHasConcerningContent = detectConcerningContent(journalEntry)
+          if (textHasConcerningContent) {
+            setIsConcerning(true)
+            setResources(defaultResources)
+          }
         }
       } catch (err) {
-        console.error("Error submitting journal entry:", err);
-        setError("Failed to connect to LM Studio API");
-        setAiResponse(
-          "I couldn't process your journal entry. Please try again."
-        );
+        console.error("Error submitting journal entry:", err)
+        setError("Failed to connect to LM Studio API")
+        setAiResponse("I couldn't process your journal entry. Please try again.")
+
+        const textHasConcerningContent = detectConcerningContent(journalEntry)
+        if (textHasConcerningContent) {
+          setIsConcerning(true)
+          setResources(defaultResources)
+        }
+
       } finally {
         setIsLoading(false);
         setSubmitted(true);
@@ -335,12 +354,13 @@ export default function Home() {
         "Compile songs that match or enhance your current positive mood",
       icon: "create",
     },
-  ];
+
+  ]
 
   // Default mental health resources
   const defaultResources = {
-    message:
-      "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+    message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+
     hotlines: [
       {
         name: "National Suicide Prevention Lifeline",
@@ -355,7 +375,9 @@ export default function Home() {
     ],
     advice:
       "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
-  };
+
+  }
+
 
   // Use suggested actions from API or defaults
   const displayedActions =
@@ -404,13 +426,8 @@ export default function Home() {
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
         {/* Update logo here   */}
-        <Image
-          src="/sentimo1.png"
-          alt="Sentimo Logo"
-          width={128}
-          height={128}
-          className="absolute top-10 center"
-        />
+
+
 
         <Card className="w-full max-w-2xl border-none shadow-lg">
           {!submitted ? (
@@ -425,19 +442,14 @@ export default function Home() {
               </CardHeader>
               <CardContent className="pt-4">
                 {showWarning && (
-                  <Alert
-                    variant="warning"
-                    className="bg-amber-50 border-amber-200"
-                  >
+
+                  <Alert variant="warning" className="bg-amber-50 border-amber-200">
                     <AlertTriangle className="h-5 w-5 text-amber-600" />
-                    <AlertTitle className="text-amber-800 font-medium">
-                      We're Here For You
-                    </AlertTitle>
+                    <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
                     <AlertDescription className="text-amber-700">
-                      We've noticed your entry contains content that suggests
-                      you might be going through a difficult time. When you
-                      submit, we'll provide resources that may help. Remember,
-                      you're not alone.
+                      We've noticed your entry contains content that suggests you might be going through a difficult
+                      time. When you submit, we'll provide resources that may help. Remember, you're not alone.
+
                     </AlertDescription>
                   </Alert>
                 )}
@@ -468,11 +480,9 @@ export default function Home() {
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <h2 className="font-medium text-[#2D3142]">Your entry</h2>
-                    <Button
-                      variant="default"
-                      className="rounded-full px-6"
-                      onClick={handleNewEntry}
-                    >
+
+                    <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
+
                       Write new entry
                     </Button>
                   </div>
@@ -500,11 +510,10 @@ export default function Home() {
                         </p>
 
                         {/* Mental Health Resources (if concerning content detected) */}
-                        {isConcerning &&
-                          (resources || defaultResources) &&
-                          renderMentalHealthResources(
-                            resources || defaultResources
-                          )}
+
+                        {isConcerning && (resources || defaultResources) &&
+                          renderMentalHealthResources(resources || defaultResources)}
+
                       </div>
                     </CardContent>
                   </Card>
@@ -549,11 +558,10 @@ export default function Home() {
                         <button
                           key={index}
                           onClick={() => scrollToCard(index)}
-                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                            activeDot === index
-                              ? "bg-[#05a653]"
-                              : "bg-[#D1D5DB]"
-                          }`}
+
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
+                            }`}
+
                           aria-label={`Go to slide ${index + 1}`}
                         />
                       ))}
@@ -570,6 +578,10 @@ export default function Home() {
             </>
           )}
         </Card>
+
+
+
+
       </main>
     </div>
   );
