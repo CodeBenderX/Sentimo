@@ -15,6 +15,7 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  devIndicators: false
 }
 
 if (userConfig) {
