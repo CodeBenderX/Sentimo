@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"yarn run backend\" \"yarn run frontend\"",
+    "dev": "next dev",
     "backend": "cmd /C \"venv\\Scripts\\activate && python app.py\"",
     "frontend": "next dev",
     "build": "next build",
