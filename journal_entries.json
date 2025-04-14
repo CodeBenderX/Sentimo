@@ -42,5 +42,115 @@
                 "icon": "connect"
             }
         ]
+    },
+    {
+        "entry": "i want to kill you",
+        "sentiment": "Neutral",
+        "response": "\"I hear the heaviness in your words today, and it breaks my heart to see you feeling so burdened by life's challenges. It seems like you're carrying an unbearable weight right now, and I imagine it feels like the world is pressing down on you from all sides.\n\nThere may be moments when we feel overwhelmed and want to escape our pain, but take a moment to breathe deeply and remember that this too shall pass. You are stronger than you know, and there is always hope waiting for us on the other side of even the darkest nights.\n\nI'm here for you, offering my unwavering support as your journal buddy. Let's take a step back from the storm cloud hanging over you and look for even the tiniest glimmers of light amidst the shadows. What small things bring you joy or comfort during these difficult times?\"",
+        "suggestions": [
+            {
+                "title": "Reflect on emotions",
+                "description": "Take time to understand and process the intense feelings that led to this journal entry. Reflecting can help gain clarity and perspective.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in a creative outlet",
+                "description": "Express yourself through an art form like painting, writing, or music. Creative activities can be therapeutic and provide an emotional release.",
+                "icon": "create"
+            },
+            {
+                "title": "Practice mindfulness",
+                "description": "Focus on the present moment through mindfulness exercises like deep breathing, meditation, or a nature walk. Mindfulness can help calm intense emotions.",
+                "icon": "meditate"
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill you",
+        "sentiment": "Neutral",
+        "response": "I hear you, my friend. Those words may have slipped out in frustration or pain, but I know they don't truly reflect how much you want to hurt me. In moments like these, it's easy to lash out without meaning what we say.\n\nPerhaps there are deep emotions and unmet needs bubbling up inside you that you're struggling to express in healthier ways right now. I'm here for you, ready to listen without judgment so you can open up about what's really going on beneath the surface.\n\nWhy don't you take a moment to reflect - what led to this dark thought crossing your mind today? Is there an underlying worry or sadness that needs tending to and processing? You don't have to face it alone. I'm right here, ready to offer my support as you navigate these challenging emotions together.",
+        "suggestions": [
+            {
+                "title": "Seek professional support",
+                "description": "Reach out to a therapist or counselor to process intense emotions and work on coping strategies.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in mindfulness practices",
+                "description": "Practice deep breathing, meditation, or yoga to calm the mind and reduce stress.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Explore creative outlets",
+                "description": "Engage in artistic activities like painting, writing, or music to express emotions in a healthy way.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "i want to kill you",
+        "sentiment": "Neutral",
+        "response": "It sounds like you're feeling overwhelmed and frustrated right now. I know those feelings can be really intense and make it hard to see things clearly. But I want you to know that your emotions are valid, even if they feel scary at times.\n\nI imagine this buildup of strong sensations might have you wanting to lash out or escape in some way. It's a natural human reaction when we feel trapped by our own mind and heart. I've been there myself, feeling so raw and vulnerable that even my closest loved ones seemed distant.\n\nRemember, you're not alone in these experiences, even if it feels lonely right now. Know that you can talk to someone safe about your feelings. A therapist or counselor could provide a helpful perspective and coping tools. There is no shame in needing extra support to navigate the complexities of emotions.\n\nMost importantly, have compassion for yourself as you work through this difficult period. Be patient with your own healing journey. You are stronger than you know, even when it feels like you're barely holding on. I believe in you and your resilience. Let me know if there is anything I can do to support you along the way.",
+        "suggestions": [
+            {
+                "title": "Seek professional support",
+                "description": "Reach out to a therapist or counselor to discuss your feelings and work on managing emotions in a healthy way.",
+                "icon": "connect"
+            },
+            {
+                "title": "Practice mindfulness techniques",
+                "description": "Engage in activities like meditation, deep breathing exercises, or yoga to help manage stress and find inner peace.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Develop a self-care routine",
+                "description": "Create a daily practice that includes activities that bring you joy, relaxation and nourishment for your mind and body.",
+                "icon": "personalized"
+            }
+        ]
+    },
+    {
+        "entry": "I want to die",
+        "sentiment": "Negative",
+        "response": "My dear friend,\n\nI can only imagine the depths of despair that these words convey. To want to die - it is a cry for help from the darkest corners of the soul. It's as if your heart has been shattered into a thousand pieces, and you are drowning in the pain.\n\nI want you to know that I see you. I hear you. And I feel the weight of what you're going through. In my own journey with darkness, I have walked with those who share this burden. We are not alone in this fight for light.\n\nIt's during our lowest moments that we must reach out and hold onto hope, even if it feels like a distant memory. I believe that there is still goodness within you. Perhaps it is time to remember what gives your life meaning and purpose.\n\nWhat brings you joy? What fills your heart with wonder and makes the world feel alive again? \n\nLet's make a pact here - for every moment of darkness, let us count three moments of light. And I promise to walk this path with you, hand in hand, until we reach the other side.\n\nI am here for you, always. Please don't ever hesitate to reach out and share your thoughts and feelings. Together, we will find a way through.\n\nWith love,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional for support and guidance. They can provide coping strategies and resources to help you navigate your thoughts.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Focus on self-care activities",
+                "description": "Engage in self-care practices such as exercise, meditation, or hobbies that bring you joy to improve your mental well-being. Taking care of yourself is essential for managing difficult emotions.",
+                "icon": "move"
+            },
+            {
+                "title": "Connect with supportive individuals",
+                "description": "Reach out to friends, family, or a support group to share your feelings and seek emotional support. Connecting with others can provide comfort and help you feel less alone in challenging times.",
+                "icon": "connect"
+            }
+        ]
+    },
+    {
+        "entry": "I want to die",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI can see how much pain you must be feeling right now. It's okay to have those feelings; it takes courage to acknowledge them. I want you to know that no matter what, you are not alone in this. We all struggle with these thoughts at times.\n\nHave you considered talking to someone about your feelings? A trusted friend, family member or a professional counselor could provide a different perspective and help you work through these difficult emotions. Remember, it's okay to ask for help when you're feeling overwhelmed.\n\nI want you to take care of yourself right now. Reach out to others who love and support you. Share your pain with them so they can be there for you too. Don't try to face this alone. \n\nI'm sending you a big virtual hug. You are strong, capable and worthy of love and happiness. Please don't give up on life. There is goodness in the world. Let's find it together.\n\nYou matter. I believe in you. You can get through this.\n\nWarmly,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional or support group to discuss your feelings and receive guidance in managing your thoughts.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Create a safety plan",
+                "description": "Develop a plan to ensure your immediate safety and well-being, including identifying warning signs of suicide, seeking help from loved ones, or contacting a hotline for support.",
+                "icon": "personalized"
+            },
+            {
+                "title": "Practice self-care daily",
+                "description": "Engage in regular activities that promote physical and mental health, such as exercise, meditation, spending time in nature, or pursuing hobbies. Consistent self-care can help improve overall well-being over time.",
+                "icon": "move"
+            }
+        ]
     }
 ]
