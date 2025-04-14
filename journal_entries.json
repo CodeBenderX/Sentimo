@@ -42,5 +42,49 @@
                 "icon": "connect"
             }
         ]
+    },
+    {
+        "entry": "I want to kill",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nIt sounds like you are going through a challenging time. I want you to know that it's okay to feel this way. Pain and difficulty are a part of life, but they don't define us. We have the power to choose how we respond.\n\nPerhaps you are feeling overwhelmed by your circumstances or struggling with something deeply inside yourself. It takes courage to face these feelings head-on. Remember though, you are not alone in this journey. I am here for you, listening and supporting you through whatever comes next.\n\nWhat I would suggest is to find a way to express your thoughts and feelings, even if it's just to yourself in your journal. Writing down your pain can be cathartic. It's also important that you take care of yourself - eat well, get enough rest, reach out for help if you need it. \n\nI don't know the details of what you are going through, but I hope you will share more about your experience. You have my full attention and empathy. Let me know how else I can support you as we navigate this together.\n\nWith compassion,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional who can provide support and guidance in managing thoughts of self-harm or suicide.",
+                "icon": "connect"
+            },
+            {
+                "title": "Cognitive Behavioral Therapy (CBT)",
+                "description": "Engage in CBT, an evidence-based therapy that helps identify and change negative thought patterns to improve mood and overall well-being. It can be done with the help of a therapist or through self-guided resources.",
+                "icon": "learn"
+            },
+            {
+                "title": "Practice mindfulness",
+                "description": "Implement daily mindfulness practices such as meditation or deep breathing exercises to increase awareness, reduce anxiety, and improve mood.",
+                "icon": "meditate"
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill",
+        "sentiment": "Neutral",
+        "response": "My dear friend,\n\nI understand that this is a difficult time for you, and I want you to know that I am here for you. When we feel a strong urge to act on our thoughts and feelings, it can be an indication that something deep within us needs attention. It's natural to have these feelings, but please remember that they are not your whole identity.\n\nWhat comes up for you right now? Is there a specific situation or memory that has triggered this feeling of wanting to kill? It's okay to explore what lies beneath the surface - our emotions often hold the key to understanding ourselves and finding healing.\n\nI encourage you to reach out for support, whether it be from friends, family, or a professional. You don't have to go through this alone. In time, I believe that you will find peace and clarity within yourself.\n\nTake care of yourself, my friend. Remember, you are worthy of love and compassion, even during these challenging times. Please know that I am thinking of you and sending you all the love and light you need.",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional who can provide support and guidance in managing thoughts of self-harm or suicide.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in mindfulness exercises",
+                "description": "Practice mindfulness techniques such as meditation, deep breathing, or guided imagery to help calm your mind and improve emotional well-being.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Explore creative outlets",
+                "description": "Dive into a creative hobby like drawing, writing, or crafting to channel negative emotions and promote overall happiness and satisfaction in life.",
+                "icon": "create"
+            }
+        ]
     }
 ]
