@@ -1,4 +1,5 @@
 let userConfig = undefined
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {

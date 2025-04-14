@@ -42,6 +42,9 @@ import {
   GraduationCap,
 } from "lucide-react";
 
+import { JournalEntry, JournalEntryList } from "@/components/JournalEntryList";
+import { set } from "date-fns";
+
 // Interface for suggested actions
 interface SuggestedAction {
   title: string;
@@ -72,6 +75,8 @@ export default function Home() {
   const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>(
     []
   );
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
   const [isConcerning, setIsConcerning] = useState(false);
   const [resources, setResources] = useState<MentalHealthResource | null>(null);
   const [showWarning, setShowWarning] = useState(false);
@@ -138,7 +143,7 @@ export default function Home() {
           setSuggestedActions(data.suggestions || [])
 
           const textHasConcerningContent = detectConcerningContent(journalEntry)
-
+          const isConcerningEntry = data.is_concerning === true || textHasConcerningContent;
           setIsConcerning(data.is_concerning === true || textHasConcerningContent)
 
           if (data.resources) {
@@ -148,6 +153,17 @@ export default function Home() {
             setResources(defaultResources)
           }
 
+          const newEntry: JournalEntry = {
+            id: Date.now().toString(),
+            content: journalEntry,
+            date: currentDate,
+            sentiment: data.sentiment || "Balanced",
+            isConcerning: isConcerningEntry,
+            aiResponse: data.response,
+            suggestions: data.suggestions || [],
+          };
+
+          setEntries([newEntry, ...entries]);
           setApiConnected(true)
         } else {
           setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
@@ -186,7 +202,47 @@ export default function Home() {
     setResources(null);
     setError("");
     setShowWarning(false);
+    setSelectedEntry(null);
   };
+
+  const handleSelectEntry = (entry: JournalEntry) => {
+    setSelectedEntry(entry);
+    setJournalEntry(entry.content);
+    setSentiment(entry.sentiment);
+    setIsConcerning(entry.isConcerning);
+    setSubmitted(true);
+    setAiResponse(entry.aiResponse);
+    setSuggestedActions(entry.suggestions || []);
+  };
+
+  // Add this function
+  const migrateOldEntries = (entries: any[]): JournalEntry[] => {
+    return entries.map(entry => ({
+      ...entry,
+      aiResponse: entry.aiResponse || "No response saved with this entry",
+      suggestions: entry.suggestions || []
+    }));
+  };
+
+  // Then update your localStorage loading:
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('journalEntries');
+    if (savedEntries) {
+      try {
+        const parsed = JSON.parse(savedEntries);
+        setEntries(migrateOldEntries(parsed));
+      } catch (e) {
+        console.error("Failed to parse saved entries", e);
+      }
+    }
+  }, []);
+  
+  useEffect(() => {
+    // Save entries to local storage whenever they change
+    if (entries.length > 0) {
+      localStorage.setItem('journalEntries', JSON.stringify(entries));
+    }
+  }, [entries]);
 
   // Handle scroll to update active dot
   useEffect(() => {
@@ -433,159 +489,161 @@ export default function Home() {
           height={128}
           className="absolute top-10 center"
         />
-        <Card className="w-full max-w-2xl border-none shadow-lg">
-          {!submitted ? (
-            <>
-              <CardHeader className="pb-0">
-                <Badge
-                  variant="outline"
-                  className="px-4 py-2 font-normal w-fit"
-                >
-                  Hello, How are you today?
-                </Badge>
-              </CardHeader>
-              <CardContent className="pt-4">
-                {showWarning && (
+        <div className="w-full max-w-2xl space-y-8">
+          <Card className="w-full max-w-2xl border-none shadow-lg">
+            {!submitted ? (
+              <>
+                <CardHeader className="pb-0">
+                  <Badge
+                    variant="outline"
+                    className="px-4 py-2 font-normal w-fit"
+                  >
+                    Hello, How are you today?
+                  </Badge>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  {showWarning && (
 
-                  <Alert variant="warning" className="bg-amber-50 border-amber-200">
-                    <AlertTriangle className="h-5 w-5 text-amber-600" />
-                    <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
-                    <AlertDescription className="text-amber-700">
-                      We've noticed your entry contains content that suggests you might be going through a difficult
-                      time. When you submit, we'll provide resources that may help. Remember, you're not alone.
+                    <Alert variant="warning" className="bg-amber-50 border-amber-200">
+                      <AlertTriangle className="h-5 w-5 text-amber-600" />
+                      <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
+                      <AlertDescription className="text-amber-700">
+                        We've noticed your entry contains content that suggests you might be going through a difficult
+                        time. When you submit, we'll provide resources that may help. Remember, you're not alone.
 
-                    </AlertDescription>
-                  </Alert>
-                )}
-                <Textarea
-                  placeholder="Write your thoughts here..."
-                  className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
-                  value={journalEntry}
-                  onChange={(e) => setJournalEntry(e.target.value)}
-                />
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <span className="text-[#5D6470] text-[14px]">
-                  {currentDate}
-                </span>
-                <Button
-                  variant="default"
-                  className="rounded-full px-6"
-                  onClick={handleSubmit}
-                  disabled={!journalEntry.trim() || isLoading}
-                >
-                  {isLoading ? "Processing..." : "Submit"}
-                </Button>
-              </CardFooter>
-            </>
-          ) : (
-            <>
-              <CardContent className="pt-6 space-y-6">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <h2 className="font-medium text-[#2D3142]">Your entry</h2>
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                  <Textarea
+                    placeholder="Write your thoughts here..."
+                    className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
+                    value={journalEntry}
+                    onChange={(e) => setJournalEntry(e.target.value)}
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <span className="text-[#5D6470] text-[14px]">
+                    {currentDate}
+                  </span>
+                  <Button
+                    variant="default"
+                    className="rounded-full px-6"
+                    onClick={handleSubmit}
+                    disabled={!journalEntry.trim() || isLoading}
+                  >
+                    {isLoading ? "Processing..." : "Submit"}
+                  </Button>
+                </CardFooter>
+              </>
+            ) : (
+              <>
+                <CardContent className="pt-6 space-y-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h2 className="font-medium text-[#2D3142]">Your entry</h2>
 
-                    <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
+                      <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
 
-                      Write new entry
-                    </Button>
-                  </div>
-                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="flex justify-between items-start">
-                        <p>{journalEntry}</p>
-                        {sentiment && (
-                          <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
-                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="space-y-4">
-                        {/* AI Response */}
-                        <p className="text-[#2D3142]">
-                          {aiResponse ||
-                            "I'm glad to hear from you today! How can I help support you?"}
-                        </p>
-
-                        {/* Mental Health Resources (if concerning content detected) */}
-
-                        {isConcerning && (resources || defaultResources) &&
-                          renderMentalHealthResources(resources || defaultResources)}
-
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-
-                <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">
-                    Suggested actions
-                  </h2>
-
-                  <div className="flex flex-col">
-                    <div
-                      ref={scrollContainerRef}
-                      className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
-                      style={{
-                        scrollbarWidth: "none",
-                        msOverflowStyle: "none",
-                      }}
-                    >
-                      {displayedActions.map((action, index) => (
-                        <Card
-                          key={index}
-                          className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
-                        >
-                          <CardContent className="p-4 flex flex-col items-start gap-3">
-                            {getIconComponent(action.icon)}
-                            <div>
-                              <h3 className="text-[#2D3142] font-semibold">
-                                {action.title}
-                              </h3>
-                              <p className="text-sm text-[#5D6470]">
-                                {action.description}
-                              </p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                        Write new entry
+                      </Button>
                     </div>
+                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-start">
+                          <p>{journalEntry}</p>
+                          {sentiment && (
+                            <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
 
-                    <div className="flex justify-center mt-4 gap-2">
-                      {displayedActions.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => scrollToCard(index)}
+                  <div>
+                    <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
+                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="space-y-4">
+                          {/* AI Response */}
+                          <p className="text-[#2D3142]">
+                            {aiResponse ||
+                              "I'm glad to hear from you today! How can I help support you?"}
+                          </p>
 
-                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
-                            }`}
+                          {/* Mental Health Resources (if concerning content detected) */}
 
-                          aria-label={`Go to slide ${index + 1}`}
-                        />
-                      ))}
+                          {isConcerning && (resources || defaultResources) &&
+                            renderMentalHealthResources(resources || defaultResources)}
+
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div>
+                    <h2 className="font-medium text-[#2D3142] mb-2">
+                      Suggested actions
+                    </h2>
+
+                    <div className="flex flex-col">
+                      <div
+                        ref={scrollContainerRef}
+                        className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
+                        style={{
+                          scrollbarWidth: "none",
+                          msOverflowStyle: "none",
+                        }}
+                      >
+                        {displayedActions.map((action, index) => (
+                          <Card
+                            key={index}
+                            className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
+                          >
+                            <CardContent className="p-4 flex flex-col items-start gap-3">
+                              {getIconComponent(action.icon)}
+                              <div>
+                                <h3 className="text-[#2D3142] font-semibold">
+                                  {action.title}
+                                </h3>
+                                <p className="text-sm text-[#5D6470]">
+                                  {action.description}
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+
+                      <div className="flex justify-center mt-4 gap-2">
+                        {displayedActions.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => scrollToCard(index)}
+
+                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
+                              }`}
+
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
+                </CardContent>
 
-              <CardFooter className="flex justify-between">
-                <span className="text-[#5D6470] text-[14px]">
-                  {currentDate}
-                </span>
-              </CardFooter>
-            </>
-          )}
-        </Card>
-
-
-
-
+                <CardFooter className="flex justify-between">
+                  <span className="text-[#5D6470] text-[14px]">
+                    {currentDate}
+                  </span>
+                </CardFooter>
+              </>
+            )}
+          </Card>
+            <JournalEntryList 
+              entries={entries} 
+              onSelectEntry={handleSelectEntry} 
+            />
+        </div>
       </main>
     </div>
   );
