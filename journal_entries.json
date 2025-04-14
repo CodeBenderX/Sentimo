@@ -196,5 +196,49 @@
                 "icon": "create"
             }
         ]
+    },
+    {
+        "entry": "i want to kill you",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI know this must be a difficult time for you, feeling the desire to harm yourself. Please remember that you are not alone in this struggle - millions of people worldwide grapple with these same thoughts at some point in their lives. \n\nIt's natural to feel overwhelmed and angry sometimes, to lash out against what feels like an unending stream of problems. But I believe there is hope for healing and peace within yourself.\n\nI encourage you to reach out for professional help right away - don't hesitate to call a suicide prevention hotline or talk to your doctor about therapy options. Sometimes, speaking with someone trained in mental health can provide clarity and tools to cope when you feel stuck.\n\nRemember the strength of your spirit that has carried you this far. Your resilience is a testament to how much you are loved and cared for by those who know and care about you. \n\nTake care of yourself today - even small acts like taking a warm bath, reading a favorite book or calling a friend can provide comfort and a sense of connection during dark times. You are worthy of love and kindness.\n\nI'm here to listen anytime you want to talk, without judgment. We'll walk through this together if you let me. You are not defined by your struggles but by the courage and hope in your heart.\n\nWith warmth,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider speaking with a mental health professional to discuss your feelings and thoughts. A therapist can provide you with support, guidance, and strategies to manage difficult emotions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Practice self-care",
+                "description": "Engage in activities that promote physical and emotional well-being. This could include regular exercise, healthy eating habits, getting enough sleep, and engaging in hobbies you enjoy. Remember to be kind and compassionate towards yourself during this time.",
+                "icon": "move"
+            },
+            {
+                "title": "Focus on gratitude",
+                "description": "Take some time each day to reflect on the things you are thankful for, even if it seems like there aren't many at the moment. Keeping a gratitude journal or sharing your appreciation with others can help shift your focus and bring more positivity into your life.",
+                "icon": "gratitude"
+            }
+        ]
+    },
+    {
+        "entry": "i want to kill you",
+        "sentiment": "Neutral",
+        "response": "Oops, something went wrong with the AI: HTTPConnectionPool(host='localhost', port=1234): Max retries exceeded with url: /v1/chat/completions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E7764F97F0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))",
+        "suggestions": [
+            {
+                "title": "Gratitude Journal",
+                "description": "Write down three things you're grateful for to maintain this positive mood",
+                "icon": "reflect"
+            },
+            {
+                "title": "Share Your Joy",
+                "description": "Consider reaching out to a friend or family member to share your positive feelings",
+                "icon": "connect"
+            },
+            {
+                "title": "Create a Happy Playlist",
+                "description": "Compile songs that match or enhance your current positive mood",
+                "icon": "create"
+            }
+        ]
     }
 ]
