@@ -42,5 +42,49 @@
                 "icon": "connect"
             }
         ]
+    },
+    {
+        "entry": "i am a bubbly and lively person",
+        "sentiment": "Neutral",
+        "response": "Dear bubbly and lively person,\n\nIt's wonderful to hear that you are a bubbly and lively person! Your energy is contagious and it's obvious how much joy you bring to the world around you. It makes me smile just thinking of all the laughter and fun you must be creating.\n\nI'm glad your mood is neutral, as this suggests that things are going well for you on a general level. However, if there is anything I can do to support you or make you feel even better, please don't hesitate to share. You have my full attention and support.\n\nYour bubbly nature also likely means you're a kind and caring friend to many people. It's so important that you are able to spread your positive energy to help others as well as you bring it into your own life.\n\nI wonder - what brings such joy and liveliness to your days? Is there something in particular that makes you feel this way? It sounds like you have a lot of reasons to be happy right now! Let me know if you'd like to chat more about it. I'm all ears and here to listen.",
+        "suggestions": [
+            {
+                "title": "Embrace your natural energy and enthusiasm",
+                "description": "Acknowledge and celebrate your bubbly and lively personality. Engage in activities that allow you to express yourself freely, such as sports or performing arts.",
+                "icon": "nature"
+            },
+            {
+                "title": "Explore different perspectives and expand your horizons",
+                "description": "Engage in learning activities to broaden your understanding of the world around you. This can include reading books on various topics, attending workshops, or taking an online course.",
+                "icon": "learn"
+            },
+            {
+                "title": "Take time for self-reflection and introspection",
+                "description": "Set aside dedicated time to reflect on your thoughts, feelings, and experiences. This can help you gain a deeper understanding of yourself and improve your overall well-being.",
+                "icon": "reflect"
+            }
+        ]
+    },
+    {
+        "entry": "I am happy",
+        "sentiment": "Positive",
+        "response": "Dear friend,\n\nI am so glad to hear that you are feeling happy today! It's wonderful to know that life has brought you joy and positivity. \n\nIt's no wonder you feel this way after experiencing such beautiful moments. The world seems a little brighter when we share in happiness, doesn't it? Your positive mood must have been contagious.\n\nI hope your happiness continues to spread like sunshine. May it fill every corner of your day with warmth and light. Remember that your feelings are valid and important - they deserve to be celebrated!\n\nHow has this positive energy impacted you today? Has it brought out any hidden talents or strengths within you? I'm curious to hear more about how this joyous mood is manifesting in your life. \n\nKeep shining, my friend! Your happiness inspires us all. Remember that there will always be sunshine after the clouds pass - and when they do, remember where you found that first ray of light.\n\nWarmly,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Reflect on your current happiness",
+                "description": "Take some time to reflect on what factors contribute to your current state of happiness and how you can maintain it in the future.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Identify positive experiences",
+                "description": "Make a list of activities or events that have brought you joy and continue to do those things regularly, as well as seek out new experiences that align with your interests and values.",
+                "icon": "create"
+            },
+            {
+                "title": "Practice gratitude daily",
+                "description": "Keep a gratitude journal where you write down three things you are thankful for each day. This practice can help shift your focus to the positive aspects of life.",
+                "icon": "gratitude"
+            }
+        ]
     }
 ]
