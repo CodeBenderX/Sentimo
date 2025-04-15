@@ -30,6 +30,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { AlertCircleIcon, AlertTriangle, Phone, Globe } from "lucide-react";
 import Image from "next/image";
+import { MainNav } from "@/components/layers/navigation";
 
 import { SpeechToText } from "@/components/speech-to-text"
 
@@ -498,6 +499,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <MainNav/>
       <div className="absolute top-0 left-0 w-full h-full animate-gradient-shift bg-gradient-to-br from-[#F9F7D9] via-[#E3F6EF] to-[#F0E6FA] opacity-80"></div>
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-[#F9F7D9] blur-3xl animate-pulse-slow"></div>

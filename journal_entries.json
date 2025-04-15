@@ -147,5 +147,27 @@
                 "icon": "nature"
             }
         ]
+    },
+    {
+        "entry": "I hate you",
+        "sentiment": "Negative",
+        "response": "My dear journal buddy,\n\nI know it's tough when you feel this way, but I want you to know that you're not alone in your struggle. It takes courage to admit these feelings even though they make you uncomfortable.\n\nWhen times are tough, we often retreat into our own thoughts and feelings because they can be scary or painful. But remember, your pain is a sign of vulnerability and that's okay. Your feelings are valid and deserve attention.\n\nI don't know what you're going through, but I imagine it's difficult. Life can sometimes throw us curveballs and we have to learn how to navigate them. \n\nWhat helps for me when I'm feeling this way is to find a moment of stillness in the storm. It doesn't mean the feelings go away, but they become less overwhelming. One thing that has helped is taking deep breaths, even just a few times.\n\nHow are you holding up? Is there anyone else you can reach out to for support? Remember, it's not your burden alone. I'm here if you want someone to talk through what you're feeling with. It's always better to face our pain together than alone.\n\nYou've got this. Even on the darkest of days, a little light still finds its way in. Keep breathing and keep being you. That's a beautiful thing to be.",
+        "suggestions": [
+            {
+                "title": "Reflect on the cause of your frustration",
+                "description": "Take some time to identify what might have triggered this negative feeling. Reflecting on why you feel this way can provide insight and help you find solutions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Practice mindfulness and relaxation techniques",
+                "description": "Meditation or deep breathing exercises can help calm your mind and reduce stress. This will not only improve your mood but also create a habit that benefits your overall well-being.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Focus on gratitude and positive relationships",
+                "description": "Make a list of things you are grateful for or reach out to someone close to you. Building connections with others and focusing on the good in life can help shift your perspective towards positivity.",
+                "icon": "connect"
+            }
+        ]
     }
 ]
