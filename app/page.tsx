@@ -1,6 +1,6 @@
 /*
 Author: Lorenzo Menil
-Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquio
+Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquioo
 Date Last Modified: 2025-04-13
 Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
 Revision History:
@@ -45,8 +45,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-import { JournalEntry, JournalEntryList } from "@/components/layers/JournalEntryList";
-import { set } from "date-fns";
+import { JournalEntry} from "@/components/layers/JournalEntryList";
 
 // Interface for suggested actions
 interface SuggestedAction {
@@ -124,10 +123,6 @@ export default function Home() {
   const handleSubmit = async () => {
     if (journalEntry.trim()) {
       setIsLoading(true);
-      setError("");
-      setIsConcerning(false);
-      setResources(null);
-
       try {
         const response = await fetch("/api/journal", {
           method: "POST",
@@ -140,6 +135,27 @@ export default function Home() {
         const data = await response.json();
 
         if (data.success) {
+          // Create new entry object
+          const newEntry: JournalEntry = {
+            id: Date.now().toString(), // Generate unique ID
+            content: journalEntry,
+            date: new Date().toLocaleDateString(),
+            sentiment: data.sentiment || "Balanced",
+            isConcerning: data.is_concerning === true,
+            aiResponse: data.response,
+            suggestions: data.suggestions || []
+          };
+
+          // Get existing entries from localStorage
+          const existingEntries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+          
+          // Add new entry to the beginning of the array
+          const updatedEntries = [newEntry, ...existingEntries];
+          
+          // Save back to localStorage
+          localStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
+
+          setSubmitted(true);
           setAiResponse(data.response);
           setSentiment(data.sentiment || "Balanced");
           setSuggestedActions(data.suggestions || []);
@@ -183,7 +199,6 @@ export default function Home() {
         }
       } finally {
         setIsLoading(false);
-        setSubmitted(true);
       }
     }
   };
@@ -629,9 +644,6 @@ export default function Home() {
             </>
           )}
         </Card>
-
-
-
 
       </main>
     </div>
