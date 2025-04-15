@@ -8,18 +8,25 @@ Revision History:
     0.2 - 2025-04-13: feat: Recommendations/suggested actions
     0.3 - 2025-04-13: feat: Sentiment emojis and GIFs, enhance journal entry responses
     0.4 - 2025-04-13: feat: Added Detection of concerning content with immediate feedback and added support resources.
+    0.5 - 2025-04-14: feat: Integrated mental health resources directly into the response section
   
 */
 
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { AlertCircleIcon, AlertTriangle, Phone, Globe } from 'lucide-react'
+import { useState, useRef, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { AlertCircleIcon, AlertTriangle, Phone, Globe } from "lucide-react";
+import Image from "next/image";
 
 // Import icons for suggested actions
 import {
@@ -33,47 +40,53 @@ import {
   TreePine,
   Heart,
   GraduationCap,
-} from "lucide-react"
+} from "lucide-react";
+
+import { JournalEntry, JournalEntryList } from "@/components/JournalEntryList";
+import { set } from "date-fns";
 
 // Interface for suggested actions
 interface SuggestedAction {
-  title: string
-  description: string
-  icon: string
+  title: string;
+  description: string;
+  icon: string;
 }
 
 // Interface for mental health resources
 interface MentalHealthResource {
-  message: string
+  message: string;
   hotlines: Array<{
-    name: string
-    phone: string
-    website: string
-  }>
-  advice: string
+    name: string;
+    phone: string;
+    website: string;
+  }>;
+  advice: string;
 }
 
-
 export default function Home() {
-  const [journalEntry, setJournalEntry] = useState("")
-  const [submitted, setSubmitted] = useState(false)
-  const [activeDot, setActiveDot] = useState(0)
-  const [isLoading, setIsLoading] = useState(false)
-  const [apiConnected, setApiConnected] = useState(false)
-  const [aiResponse, setAiResponse] = useState("")
-  const [sentiment, setSentiment] = useState("")
-  const [error, setError] = useState("")
-  const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>([])
-  const [isConcerning, setIsConcerning] = useState(false)
-  const [resources, setResources] = useState<MentalHealthResource | null>(null)
-  const [showWarning, setShowWarning] = useState(false)
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [journalEntry, setJournalEntry] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [activeDot, setActiveDot] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiConnected, setApiConnected] = useState(false);
+  const [aiResponse, setAiResponse] = useState("");
+  const [sentiment, setSentiment] = useState("");
+  const [error, setError] = useState("");
+  const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>(
+    []
+  );
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
+  const [isConcerning, setIsConcerning] = useState(false);
+  const [resources, setResources] = useState<MentalHealthResource | null>(null);
+  const [showWarning, setShowWarning] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
-  })
+  });
 
   // Function to detect concerning content on the frontend
   const detectConcerningContent = (text: string): boolean => {
@@ -90,27 +103,27 @@ export default function Home() {
       /\b(i want to die|i'm going to die|scared of dying|feel like i'm going to die)\b/i,
       // Violent thoughts toward others
       /\b(kill you|want to kill|going to kill)\b/i,
-    ]
+    ];
 
-    return concerningPatterns.some((pattern) => pattern.test(text))
-  }
+    return concerningPatterns.some((pattern) => pattern.test(text));
+  };
 
   // Check for concerning content as user types
   useEffect(() => {
     if (journalEntry.trim()) {
-      const isConcerningEntry = detectConcerningContent(journalEntry)
-      setShowWarning(isConcerningEntry)
+      const isConcerningEntry = detectConcerningContent(journalEntry);
+      setShowWarning(isConcerningEntry);
     } else {
-      setShowWarning(false)
+      setShowWarning(false);
     }
-  }, [journalEntry])
+  }, [journalEntry]);
 
   const handleSubmit = async () => {
     if (journalEntry.trim()) {
-      setIsLoading(true)
-      setError("")
-      setIsConcerning(false)
-      setResources(null)
+      setIsLoading(true);
+      setError("");
+      setIsConcerning(false);
+      setResources(null);
 
       try {
         const response = await fetch("/api/journal", {
@@ -119,90 +132,167 @@ export default function Home() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ journalEntry }),
-        })
+        });
 
-        const data = await response.json()
+        const data = await response.json();
 
         if (data.success) {
+
           setAiResponse(data.response)
           setSentiment(data.sentiment || "Balanced")
           setSuggestedActions(data.suggestions || [])
-          setIsConcerning(data.is_concerning || false)
-          setResources(data.resources || null)
+
+          const textHasConcerningContent = detectConcerningContent(journalEntry)
+          const isConcerningEntry = data.is_concerning === true || textHasConcerningContent;
+          setIsConcerning(data.is_concerning === true || textHasConcerningContent)
+
+          if (data.resources) {
+            setResources(data.resources)
+          } else if (data.is_concerning === true || textHasConcerningContent) {
+            // If no resources provided but content is concerning, use defaults
+            setResources(defaultResources)
+          }
+
+          const newEntry: JournalEntry = {
+            id: Date.now().toString(),
+            content: journalEntry,
+            date: currentDate,
+            sentiment: data.sentiment || "Balanced",
+            isConcerning: isConcerningEntry,
+            aiResponse: data.response,
+            suggestions: data.suggestions || [],
+          };
+
+          setEntries([newEntry, ...entries]);
           setApiConnected(true)
         } else {
           setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
           setError("Failed to connect to LM Studio API")
+          const textHasConcerningContent = detectConcerningContent(journalEntry)
+          if (textHasConcerningContent) {
+            setIsConcerning(true)
+            setResources(defaultResources)
+          }
         }
       } catch (err) {
         console.error("Error submitting journal entry:", err)
         setError("Failed to connect to LM Studio API")
         setAiResponse("I couldn't process your journal entry. Please try again.")
+
+        const textHasConcerningContent = detectConcerningContent(journalEntry)
+        if (textHasConcerningContent) {
+          setIsConcerning(true)
+          setResources(defaultResources)
+        }
+
       } finally {
-        setIsLoading(false)
-        setSubmitted(true)
+        setIsLoading(false);
+        setSubmitted(true);
       }
     }
-  }
+  };
 
   const handleNewEntry = () => {
-    setJournalEntry("")
-    setSubmitted(false)
-    setAiResponse("")
-    setSentiment("")
-    setSuggestedActions([])
-    setIsConcerning(false)
-    setResources(null)
-    setError("")
-    setShowWarning(false)
-  }
+    setJournalEntry("");
+    setSubmitted(false);
+    setAiResponse("");
+    setSentiment("");
+    setSuggestedActions([]);
+    setIsConcerning(false);
+    setResources(null);
+    setError("");
+    setShowWarning(false);
+    setSelectedEntry(null);
+  };
+
+  const handleSelectEntry = (entry: JournalEntry) => {
+    setSelectedEntry(entry);
+    setJournalEntry(entry.content);
+    setSentiment(entry.sentiment);
+    setIsConcerning(entry.isConcerning);
+    setSubmitted(true);
+    setAiResponse(entry.aiResponse);
+    setSuggestedActions(entry.suggestions || []);
+  };
+
+  // Add this function
+  const migrateOldEntries = (entries: any[]): JournalEntry[] => {
+    return entries.map(entry => ({
+      ...entry,
+      aiResponse: entry.aiResponse || "No response saved with this entry",
+      suggestions: entry.suggestions || []
+    }));
+  };
+
+  // Then update your localStorage loading:
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('journalEntries');
+    if (savedEntries) {
+      try {
+        const parsed = JSON.parse(savedEntries);
+        setEntries(migrateOldEntries(parsed));
+      } catch (e) {
+        console.error("Failed to parse saved entries", e);
+      }
+    }
+  }, []);
+  
+  useEffect(() => {
+    // Save entries to local storage whenever they change
+    if (entries.length > 0) {
+      localStorage.setItem('journalEntries', JSON.stringify(entries));
+    }
+  }, [entries]);
 
   // Handle scroll to update active dot
   useEffect(() => {
     const handleScroll = () => {
-      if (!scrollContainerRef.current) return
+      if (!scrollContainerRef.current) return;
 
-      const scrollPosition = scrollContainerRef.current.scrollLeft
-      const cardWidth = 250 + 12 // card width + gap
-      const totalCards = suggestedActions.length || 3
+      const scrollPosition = scrollContainerRef.current.scrollLeft;
+      const cardWidth = 250 + 12; // card width + gap
+      const totalCards = suggestedActions.length || 3;
 
       // Calculate which card is most visible
-      const activeIndex = Math.min(Math.floor((scrollPosition + cardWidth / 2) / cardWidth), totalCards - 1)
+      const activeIndex = Math.min(
+        Math.floor((scrollPosition + cardWidth / 2) / cardWidth),
+        totalCards - 1
+      );
 
-      setActiveDot(activeIndex)
-    }
+      setActiveDot(activeIndex);
+    };
 
-    const scrollContainer = scrollContainerRef.current
+    const scrollContainer = scrollContainerRef.current;
     if (scrollContainer) {
-      scrollContainer.addEventListener("scroll", handleScroll)
-      return () => scrollContainer.removeEventListener("scroll", handleScroll)
+      scrollContainer.addEventListener("scroll", handleScroll);
+      return () => scrollContainer.removeEventListener("scroll", handleScroll);
     }
-  }, [submitted, suggestedActions])
+  }, [submitted, suggestedActions]);
 
   // Function to scroll to a specific card when dot is clicked
   const scrollToCard = (index: number) => {
-    if (!scrollContainerRef.current) return
+    if (!scrollContainerRef.current) return;
 
-    const cardWidth = 250 + 12 // card width + gap
+    const cardWidth = 250 + 12; // card width + gap
     scrollContainerRef.current.scrollTo({
       left: index * cardWidth,
       behavior: "smooth",
-    })
-    setActiveDot(index)
-  }
+    });
+    setActiveDot(index);
+  };
 
   // Get sentiment badge color
   const getSentimentColor = () => {
     switch (sentiment?.toLowerCase()) {
       case "positive":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "negative":
-        return "bg-red-100 text-red-800"
+        return "bg-red-100 text-red-800";
       case "neutral":
       default:
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-100 text-blue-800";
     }
-  }
+  };
 
   //emojis for sentiment
   const getSentimentEmoji = () => {
@@ -223,51 +313,51 @@ export default function Home() {
       case "positive":
         return (
           <picture>
-          <source
-            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.webp"
-            type="image/webp"
-          />
-          <img
-            src="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.gif"
-            alt="☺"
-            width="32"
-            height="32"
-            className="inline-block align-middle"
-          />
-        </picture>
+            <source
+              srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.webp"
+              type="image/webp"
+            />
+            <img
+              src="https://fonts.gstatic.com/s/e/notoemoji/latest/263a_fe0f/512.gif"
+              alt="☺"
+              width="32"
+              height="32"
+              className="inline-block align-middle"
+            />
+          </picture>
         );
       case "negative":
         return (
           <picture>
-          <source
-            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.webp"
-            type="image/webp"
-          />
-          <img
-            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.gif"
-            alt="☺"
-            width="32"
-            height="32"
-            className="inline-block align-middle"
-          />
-        </picture>
+            <source
+              srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.webp"
+              type="image/webp"
+            />
+            <img
+              src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f61e/512.gif"
+              alt="☺"
+              width="32"
+              height="32"
+              className="inline-block align-middle"
+            />
+          </picture>
         );
       case "neutral":
       default:
         return (
           <picture>
-          <source
-            srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.webp"
-            type="image/webp"
-          />
-          <img
-            src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.gif"
-            alt="☺"
-            width="32"
-            height="32"
-            className="inline-block align-middle"
-          />
-        </picture>
+            <source
+              srcSet="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.webp"
+              type="image/webp"
+            />
+            <img
+              src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f914/512.gif"
+              alt="☺"
+              width="32"
+              height="32"
+              className="inline-block align-middle"
+            />
+          </picture>
         );
     }
   };
@@ -276,70 +366,78 @@ export default function Home() {
   const getIconComponent = (iconName: string) => {
     switch (iconName.toLowerCase()) {
       case "reflect":
-        return <BookOpen className="w-12 h-12 text-[#05a653]" />
+        return <BookOpen className="w-12 h-12 text-[#05a653]" />;
       case "journey":
-        return <Compass className="w-12 h-12 text-[#05a653]" />
+        return <Compass className="w-12 h-12 text-[#05a653]" />;
       case "personalized":
-        return <Palette className="w-12 h-12 text-[#05a653]" />
+        return <Palette className="w-12 h-12 text-[#05a653]" />;
       case "meditate":
-        return <Meditation className="w-12 h-12 text-[#05a653]" />
+        return <Meditation className="w-12 h-12 text-[#05a653]" />;
       case "connect":
-        return <Users className="w-12 h-12 text-[#05a653]" />
+        return <Users className="w-12 h-12 text-[#05a653]" />;
       case "create":
-        return <Music className="w-12 h-12 text-[#05a653]" />
+        return <Music className="w-12 h-12 text-[#05a653]" />;
       case "move":
-        return <Activity className="w-12 h-12 text-[#05a653]" />
+        return <Activity className="w-12 h-12 text-[#05a653]" />;
       case "nature":
-        return <TreePine className="w-12 h-12 text-[#05a653]" />
+        return <TreePine className="w-12 h-12 text-[#05a653]" />;
       case "gratitude":
-        return <Heart className="w-12 h-12 text-[#05a653]" />
+        return <Heart className="w-12 h-12 text-[#05a653]" />;
       case "learn":
-        return <GraduationCap className="w-12 h-12 text-[#05a653]" />
+        return <GraduationCap className="w-12 h-12 text-[#05a653]" />;
       default:
-        return <BookOpen className="w-12 h-12 text-[#05a653]" />
+        return <BookOpen className="w-12 h-12 text-[#05a653]" />;
     }
-  }
+  };
 
   // Default suggested actions
   const defaultSuggestedActions = [
     {
       title: "Gratitude Journal",
-      description: "Write down three things you're grateful for to maintain this positive mood",
+      description:
+        "Write down three things you're grateful for to maintain this positive mood",
       icon: "reflect",
     },
     {
       title: "Share Your Joy",
-      description: "Consider reaching out to a friend or family member to share your positive feelings",
+      description:
+        "Consider reaching out to a friend or family member to share your positive feelings",
       icon: "connect",
     },
     {
       title: "Create a Happy Playlist",
-      description: "Compile songs that match or enhance your current positive mood",
+      description:
+        "Compile songs that match or enhance your current positive mood",
       icon: "create",
     },
+
   ]
 
-    // Default mental health resources
-    const defaultResources = {
-      message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
-      hotlines: [
-        {
-          name: "National Suicide Prevention Lifeline",
-          phone: "988 or 1-800-273-8255",
-          website: "https://suicidepreventionlifeline.org/",
-        },
-        {
-          name: "Crisis Text Line",
-          phone: "Text HOME to 741741",
-          website: "https://www.crisistextline.org/",
-        },
-      ],
-      advice:
-        "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
-    }
+  // Default mental health resources
+  const defaultResources = {
+    message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+
+    hotlines: [
+      {
+        name: "National Suicide Prevention Lifeline",
+        phone: "988 or 1-800-273-8255",
+        website: "https://suicidepreventionlifeline.org/",
+      },
+      {
+        name: "Crisis Text Line",
+        phone: "Text HOME to 741741",
+        website: "https://www.crisistextline.org/",
+      },
+    ],
+    advice:
+      "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
+
+  }
+
 
   // Use suggested actions from API or defaults
-  const displayedActions = suggestedActions.length > 0 ? suggestedActions : defaultSuggestedActions
+  const displayedActions =
+    suggestedActions.length > 0 ? suggestedActions : defaultSuggestedActions;
 
   // Render mental health resources
   const renderMentalHealthResources = (resources: MentalHealthResource) => {
@@ -370,8 +468,8 @@ export default function Home() {
         </div>
         <p className="text-[#2D3142] text-sm">{resources.advice}</p>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -383,141 +481,170 @@ export default function Home() {
       </div>
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
-      {/* Update logo here   */}
+        {/* Update logo here   */}
+        <Image
+          src="/sentimo1.png"
+          alt="Sentimo Logo"
+          width={128}
+          height={128}
+          className="absolute top-10 center"
+        />
+        <div className="w-full max-w-2xl space-y-8">
+          <Card className="w-full max-w-2xl border-none shadow-lg">
+            {!submitted ? (
+              <>
+                <CardHeader className="pb-0">
+                  <Badge
+                    variant="outline"
+                    className="px-4 py-2 font-normal w-fit"
+                  >
+                    Hello, How are you today?
+                  </Badge>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  {showWarning && (
 
-        <Card className="w-full max-w-2xl border-none shadow-lg">
-          {!submitted ? (
-            <>
-              <CardHeader className="pb-0">
-                <Badge variant="outline" className="px-4 py-2 font-normal w-fit">
-                  Hello, How are you today?
-                </Badge>
-              </CardHeader>
-              <CardContent className="pt-4">
-              {showWarning && (
-              <Alert variant="warning" className="bg-amber-50 border-amber-200">
-              <AlertTriangle className="h-5 w-5 text-amber-600" />
-              <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
-              <AlertDescription className="text-amber-700">
-                We've noticed your entry contains content that suggests you might be going through a difficult
-                time. When you submit, we'll provide resources that may help. Remember, you're not alone.
-              </AlertDescription>
-              </Alert>
-            )}
-                <Textarea
-                  placeholder="Write your thoughts here..."
-                  className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
-                  value={journalEntry}
-                  onChange={(e) => setJournalEntry(e.target.value)}
-                />
-              </CardContent>
-              <CardFooter className="flex justify-between">
-                <span className="text-[#5D6470] text-[14px]">{currentDate}</span>
-                <Button
-                  variant="default"
-                  className="rounded-full px-6"
-                  onClick={handleSubmit}
-                  disabled={!journalEntry.trim() || isLoading}
-                >
-                  {isLoading ? "Processing..." : "Submit"}
-                </Button>
-              </CardFooter>
-            </>
-          ) : (
-            <>
-              <CardContent className="pt-6 space-y-6">
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                  <h2 className="font-medium text-[#2D3142]">Your entry</h2>
-                  <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
-                    Write new entry
+                    <Alert variant="warning" className="bg-amber-50 border-amber-200">
+                      <AlertTriangle className="h-5 w-5 text-amber-600" />
+                      <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
+                      <AlertDescription className="text-amber-700">
+                        We've noticed your entry contains content that suggests you might be going through a difficult
+                        time. When you submit, we'll provide resources that may help. Remember, you're not alone.
+
+                      </AlertDescription>
+                    </Alert>
+                  )}
+                  <Textarea
+                    placeholder="Write your thoughts here..."
+                    className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
+                    value={journalEntry}
+                    onChange={(e) => setJournalEntry(e.target.value)}
+                  />
+                </CardContent>
+                <CardFooter className="flex justify-between">
+                  <span className="text-[#5D6470] text-[14px]">
+                    {currentDate}
+                  </span>
+                  <Button
+                    variant="default"
+                    className="rounded-full px-6"
+                    onClick={handleSubmit}
+                    disabled={!journalEntry.trim() || isLoading}
+                  >
+                    {isLoading ? "Processing..." : "Submit"}
                   </Button>
-                </div>
-                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="flex justify-between items-start">
-                        <p>{journalEntry}</p>
-                        {sentiment && (
-  <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
-)}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-                
-                <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
-                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="space-y-4">
-                        {/* AI Response */}
-                        <p className="text-[#2D3142]">
-                          {aiResponse || "I'm glad to hear from you today! How can I help support you?"}
-                        </p>
+                </CardFooter>
+              </>
+            ) : (
+              <>
+                <CardContent className="pt-6 space-y-6">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <h2 className="font-medium text-[#2D3142]">Your entry</h2>
 
-                        {/* Mental Health Resources (if concerning content detected) */}
-                        {isConcerning &&
-                          (resources || defaultResources) &&
-                          renderMentalHealthResources(resources || defaultResources)}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                      <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
 
-                <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">Suggested actions</h2>
-
-                  <div className="flex flex-col">
-                    <div
-                      ref={scrollContainerRef}
-                      className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
-                      style={{
-                        scrollbarWidth: "none",
-                        msOverflowStyle: "none",
-                      }}
-                    >
-                      {displayedActions.map((action, index) => (
-                        <Card
-                          key={index}
-                          className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
-                        >
-                          <CardContent className="p-4 flex flex-col items-start gap-3">
-                            {getIconComponent(action.icon)}
-                            <div>
-                              <h3 className="text-[#2D3142] font-semibold">{action.title}</h3>
-                              <p className="text-sm text-[#5D6470]">{action.description}</p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                        Write new entry
+                      </Button>
                     </div>
+                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-start">
+                          <p>{journalEntry}</p>
+                          {sentiment && (
+                            <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
 
-                    <div className="flex justify-center mt-4 gap-2">
-                      {displayedActions.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => scrollToCard(index)}
-                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                            activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
-                          }`}
-                          aria-label={`Go to slide ${index + 1}`}
-                        />
-                      ))}
+                  <div>
+                    <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
+                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
+                      <CardContent className="p-4">
+                        <div className="space-y-4">
+                          {/* AI Response */}
+                          <p className="text-[#2D3142]">
+                            {aiResponse ||
+                              "I'm glad to hear from you today! How can I help support you?"}
+                          </p>
+
+                          {/* Mental Health Resources (if concerning content detected) */}
+
+                          {isConcerning && (resources || defaultResources) &&
+                            renderMentalHealthResources(resources || defaultResources)}
+
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+
+                  <div>
+                    <h2 className="font-medium text-[#2D3142] mb-2">
+                      Suggested actions
+                    </h2>
+
+                    <div className="flex flex-col">
+                      <div
+                        ref={scrollContainerRef}
+                        className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
+                        style={{
+                          scrollbarWidth: "none",
+                          msOverflowStyle: "none",
+                        }}
+                      >
+                        {displayedActions.map((action, index) => (
+                          <Card
+                            key={index}
+                            className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
+                          >
+                            <CardContent className="p-4 flex flex-col items-start gap-3">
+                              {getIconComponent(action.icon)}
+                              <div>
+                                <h3 className="text-[#2D3142] font-semibold">
+                                  {action.title}
+                                </h3>
+                                <p className="text-sm text-[#5D6470]">
+                                  {action.description}
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+
+                      <div className="flex justify-center mt-4 gap-2">
+                        {displayedActions.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => scrollToCard(index)}
+
+                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
+                              }`}
+
+                            aria-label={`Go to slide ${index + 1}`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
+                </CardContent>
 
-              <CardFooter className="flex justify-between">
-                <span className="text-[#5D6470] text-[14px]">{currentDate}</span>
-
-              </CardFooter>
-            </>
-          )}
-        </Card>
-
-        
+                <CardFooter className="flex justify-between">
+                  <span className="text-[#5D6470] text-[14px]">
+                    {currentDate}
+                  </span>
+                </CardFooter>
+              </>
+            )}
+          </Card>
+            <JournalEntryList 
+              entries={entries} 
+              onSelectEntry={handleSelectEntry} 
+            />
+        </div>
       </main>
     </div>
-  )
+  );
 }
