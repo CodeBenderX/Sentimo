@@ -1,5 +1,24 @@
 [
     {
+<<<<<<< HEAD
+        "entry": "i am sad",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI can understand how feeling sad would make you feel so heavy at heart. It's a difficult emotion to carry and I want you to know that it's okay to acknowledge these feelings without judgment.\n\nWhen we are sad, sometimes it's because something has happened to us or our world feels off balance. Perhaps there is something in your life that is weighing on your mind more than usual? \n\nI am here for you and I would be honored if you could share with me what is happening. Even just a few words can make all the difference - talking about it can help lighten the load.\n\nRemember, sadness doesn't last forever. You are not defined by these feelings but instead, they are just passing through. What you do in response to them can change your perspective and in turn, uplift your spirit.\n\nLet me know how I can support you, my dear friend. I am here for you always.\n\nYours truly,\nA compassionate journal buddy",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to identify the root cause of your sadness and consider how it may be affecting your overall well-being. Journaling or talking to a trusted friend can help you process these emotions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Practice gratitude",
+                "description": "Focus on things you're thankful for in life, even if they seem small. Keeping a gratitude journal daily can shift your perspective and bring more positivity into your day.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Engage in physical movement",
+                "description": "Regular exercise has been shown to boost mood and reduce stress levels. Find an activity you enjoy, like walking, yoga or dancing, and make it a habit to take some time for yourself.",
+=======
         "entry": "i will kill you",
         "sentiment": "Neutral",
         "response": "Dear friend,\n\nI want to offer my deepest compassion as I imagine the weight of those words resting heavily on your heart. It's natural to feel this way during difficult times. Please know that I am here for you, without judgment, just a caring presence to lean on.\n\nWhen we are hurting or struggling with thoughts like these, it often means we're grappling with deep emotions that need our full attention and care. We may be trying to make sense of something overwhelming or scary, perhaps even feeling overwhelmed by the world around us at this moment in time.\n\nYour feelings matter greatly to me, as they do to anyone who knows and loves you. In times like these, it's important to acknowledge and accept what we are feeling. That doesn't mean dwelling on it but recognizing it for what it is - a valid experience, a part of our human journey.\n\nI want to ask if there's someone or something that you find solace in during tough moments? Maybe it's nature, music, talking with trusted friends... whatever brings you comfort and peace. Perhaps there are things we can do together to help lighten your load?\n\nPlease remember, this too shall pass. We all have our storms but also our sunshine moments. It's important not to let one moment define us. I'm here if you ever need someone to talk through these thoughts with or just lend an ear.\n\nBe gentle on yourself and take care of what matters most - your wellbeing and the things that bring you joy. You're strong, resilient, and loved.\n\nWarmly,\nYour Journal Buddy",
@@ -39,6 +58,7 @@
             {
                 "title": "Engage in physical activity",
                 "description": "Regular exercise releases endorphins, which can boost mood and reduce stress. Find an activity you enjoy, such as walking, swimming or dancing, to release pent-up energy and improve overall well-being.",
+>>>>>>> f72ccf57886fd60a502299c065a61b324f0fb89c
                 "icon": "move"
             }
         ]
@@ -46,6 +66,23 @@
     {
         "entry": "i want to die",
         "sentiment": "Negative",
+<<<<<<< HEAD
+        "response": "Dear friend,\n\nI know it's hard to feel this way. It's okay to acknowledge these feelings, even if they are painful. Remember that we all face difficult moments in life, and how we respond can make a big difference.\n\nSometimes when we're feeling down, we might wonder why this is happening to us or what we could do differently. I'm here to say it doesn't have to be permanent or a sign of weakness. It's okay to feel this way, but please know that you are not your feelings.\n\nWhat comes with these dark moments? Do you sense any underlying emotions or thoughts that are connected to your desire to die?\n\nI can imagine the weight on your shoulders is immense. Remember though, there are others who care about you and want to help. You don't have to face this alone. \n\nLet's take a moment to reflect together, and maybe we'll find some hope in these moments of darkness. I'm here for you, friend.\n\nAlways,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional who can provide support, guidance and treatment options.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in creative outlets",
+                "description": "Dive into artistic expressions like writing, painting or music. Engaging in creativity can be a therapeutic way to express emotions and find joy.",
+                "icon": "create"
+            },
+            {
+                "title": "Connect with supportive people",
+                "description": "Surround yourself with friends, family, or support groups who uplift you and provide a listening ear. Connecting with others can help combat feelings of isolation and provide new perspectives.",
+=======
         "response": "Dear friend,\n\nI can imagine how overwhelming it must feel to think about ending one's life. When we're in such deep pain and feel there are no other options, it's natural to turn to thoughts of death. But I want you to know that this is a moment of extreme distress and not who you truly are.\n\nYou matter so much and your life has value. Even in the darkest moments, there's always light to be found if we look for it. Perhaps these feelings will pass as time goes on or maybe seeking help from someone like a therapist could provide relief. \n\nI'm here for you through this. What helps you feel more grounded right now? Is there anything I can do to support you in feeling more connected with yourself and your true desires?\n\nPlease know, even if things seem unbearable, that you are not alone and there is always hope for healing and growth. You are loved deeply.\n\nWith caring,\n[Your Name]",
         "suggestions": [
             {
@@ -61,11 +98,54 @@
             {
                 "title": "Connect with supportive people",
                 "description": "Reach out to friends, family, or support groups who can provide a listening ear and offer encouragement during difficult times.",
+>>>>>>> f72ccf57886fd60a502299c065a61b324f0fb89c
                 "icon": "connect"
             }
         ]
     },
     {
+<<<<<<< HEAD
+        "entry": "i am a bubbly and lively person",
+        "sentiment": "Neutral",
+        "response": "Dear bubbly and lively person,\n\nIt's wonderful to hear that you are a bubbly and lively person! Your energy is contagious and it's obvious how much joy you bring to the world around you. It makes me smile just thinking of all the laughter and fun you must be creating.\n\nI'm glad your mood is neutral, as this suggests that things are going well for you on a general level. However, if there is anything I can do to support you or make you feel even better, please don't hesitate to share. You have my full attention and support.\n\nYour bubbly nature also likely means you're a kind and caring friend to many people. It's so important that you are able to spread your positive energy to help others as well as you bring it into your own life.\n\nI wonder - what brings such joy and liveliness to your days? Is there something in particular that makes you feel this way? It sounds like you have a lot of reasons to be happy right now! Let me know if you'd like to chat more about it. I'm all ears and here to listen.",
+        "suggestions": [
+            {
+                "title": "Embrace your natural energy and enthusiasm",
+                "description": "Acknowledge and celebrate your bubbly and lively personality. Engage in activities that allow you to express yourself freely, such as sports or performing arts.",
+                "icon": "nature"
+            },
+            {
+                "title": "Explore different perspectives and expand your horizons",
+                "description": "Engage in learning activities to broaden your understanding of the world around you. This can include reading books on various topics, attending workshops, or taking an online course.",
+                "icon": "learn"
+            },
+            {
+                "title": "Take time for self-reflection and introspection",
+                "description": "Set aside dedicated time to reflect on your thoughts, feelings, and experiences. This can help you gain a deeper understanding of yourself and improve your overall well-being.",
+                "icon": "reflect"
+            }
+        ]
+    },
+    {
+        "entry": "I am happy",
+        "sentiment": "Positive",
+        "response": "Dear friend,\n\nI am so glad to hear that you are feeling happy today! It's wonderful to know that life has brought you joy and positivity. \n\nIt's no wonder you feel this way after experiencing such beautiful moments. The world seems a little brighter when we share in happiness, doesn't it? Your positive mood must have been contagious.\n\nI hope your happiness continues to spread like sunshine. May it fill every corner of your day with warmth and light. Remember that your feelings are valid and important - they deserve to be celebrated!\n\nHow has this positive energy impacted you today? Has it brought out any hidden talents or strengths within you? I'm curious to hear more about how this joyous mood is manifesting in your life. \n\nKeep shining, my friend! Your happiness inspires us all. Remember that there will always be sunshine after the clouds pass - and when they do, remember where you found that first ray of light.\n\nWarmly,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Reflect on your current happiness",
+                "description": "Take some time to reflect on what factors contribute to your current state of happiness and how you can maintain it in the future.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Identify positive experiences",
+                "description": "Make a list of activities or events that have brought you joy and continue to do those things regularly, as well as seek out new experiences that align with your interests and values.",
+                "icon": "create"
+            },
+            {
+                "title": "Practice gratitude daily",
+                "description": "Keep a gratitude journal where you write down three things you are thankful for each day. This practice can help shift your focus to the positive aspects of life.",
+                "icon": "gratitude"
+=======
         "entry": "i want to die",
         "sentiment": "Negative",
         "response": "Dear friend,\n\nI understand that this statement is filled with pain and despair. It's not an easy thing to say out loud, especially when it comes from your heart. I want you to know that I am here for you, listening without judgment.\n\nWhen we feel as if death is the only escape from our suffering, it's because our hearts are heavy with pain and our minds are clouded by darkness. We might be looking for an end to the anguish we're feeling, but in reality, life holds so much beauty, purpose, and potential.\n\nI want you to remember that this too shall pass. There is light at the end of your tunnel, even if it feels distant now. Let me ask you - what has brought you to this place of despair? Is there a specific reason or set of circumstances that feel insurmountable?\n\nTaking time to reflect on these feelings can help us find our way through the darkness. You are not alone in feeling this way; many have walked this path before you and come out the other side with renewed hope and strength.\n\nReach out to those who love you, surround yourself with light and warmth. Remember that your life is precious, a gift waiting to be lived. I'm here for you, offering my support and listening heart. You are worthy of joy and peace.\n\nWith all my care,\n[Your Name]",
@@ -84,6 +164,7 @@
                 "title": "Focus on self-care",
                 "description": "Engage in activities that promote physical and emotional well-being, such as regular exercise, healthy eating habits, sufficient sleep, and engaging in hobbies or social interactions. Make sure to prioritize your health and safety.",
                 "icon": "move"
+>>>>>>> f72ccf57886fd60a502299c065a61b324f0fb89c
             }
         ]
     },
