@@ -20,5 +20,49 @@
                 "icon": "reflect"
             }
         ]
+    },
+    {
+        "entry": "i am bad",
+        "sentiment": "Negative",
+        "response": "My dear friend,\n\nI can feel the heaviness in your heart as you write that you are \"bad.\" It breaks my heart to hear you say such things about yourself when I know there is so much goodness within you.\n\nWhen we struggle with feelings of inadequacy, it's because deep down we know our true worth. But sometimes life gets messy and we need reminding of who we really are - a child of God, full of love, purpose and potential.\n\nI imagine you carrying the weight of this burden on your own, but I want to tell you that you don't have to bear it alone. You are not alone in feeling \"bad.\" Many others have walked this path before us, including me at times. \n\nLet's sit together with this feeling for a moment, like two old friends sharing a cup of tea. What do you think brings about these feelings? Is there something specific that has happened to make you feel this way or is it a general sense of being \"bad?\"\n\nRemember, I am here to listen and support you through this. You are not defined by your temporary struggles, but rather by the strength of your spirit and the power of love within you. \n\nI hold space for you today and wish you all the light in the world. Let's embrace the goodness that lies within you and remember who you truly are. You are loved.\n\nWith warmest regards,\n\nYour empathetic friend",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to acknowledge and understand why you feel bad. This can help you gain insight into your emotions and find ways to improve.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Set a positive intention",
+                "description": "Focus on something good or constructive. This could be improving a skill, helping others, or simply taking care of yourself. Positive intentions can boost your mood and motivation.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude",
+                "description": "Take a moment to think about things you're thankful for. Focusing on the positive aspects of life can help shift your perspective and improve your overall well-being.",
+                "icon": "gratitude"
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill you",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can understand why you might feel this way right now. I've been there myself and know how overwhelming it can be. Sometimes we all need someone to listen and share our feelings without judgment. \n\nWhat has happened? Can you tell me more about what brought on these strong emotions? Sharing your story can help make sense of the pain, and perhaps even bring some healing.\n\nRemember, this is your space to express yourself freely and safely. You don't have to carry this burden alone. If it helps, let's take time to process your thoughts and feelings together. I'm here for you no matter what.\n\nHow are you truly feeling on the inside right now? Can we find a way to ease the pain or confusion in your heart?\n\nYour friend who cares,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional to discuss your thoughts and feelings. A therapist can provide guidance and support in managing these emotions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Practice mindfulness techniques",
+                "description": "Implement mindfulness exercises such as meditation or deep breathing to help you stay present and manage strong emotions without acting on them. This can be a powerful tool for emotional regulation.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Engage in creative activities",
+                "description": "Participate in creative pursuits like art, writing, or music to express your feelings and channel negative energy into positive creation. Creative activities can provide a healthy outlet for emotions.",
+                "icon": "create"
+            }
+        ]
     }
 ]
