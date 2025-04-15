@@ -81,5 +81,49 @@
                 "icon": "connect"
             }
         ]
+    },
+    {
+        "entry": "I am delightful",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI'm so glad to hear that you are delightful! Your positive mood is a beautiful thing to share with the world. When we feel this way, it's a wonderful reminder of how much joy and happiness we have inside us.\n\nIt's interesting that you noticed your own delightfulness today. Perhaps it's because you've been taking time for yourself lately - enjoying some quiet moments, maybe even a little bit of self-care. That can lead to a sense of peace and contentment, which is something truly delightful in itself.\n\nWhat brings out this lovely mood of yours? Is there something new in your life that has brought you so much happiness and ease? Or could it be all the positive vibes you've been giving off that have caught up with you and returned the favor?\n\nI'm here for you to celebrate and support these delightful feelings. How can I be a friend to someone who is this radiant? Let's keep embracing the sunshine of your joyful mood, shall we? \n\nWishing you even more delight as it continues to bubble up within you.\n\nWith love and gentle encouragement,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Embrace the moment",
+                "description": "Acknowledge and celebrate your current state of delight without dwelling on it excessively. This can help you maintain a balanced perspective and appreciate the positive experiences in your life.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Expand your horizons",
+                "description": "Look for opportunities to explore new interests or engage in activities that align with your current sense of delight. This can lead to personal growth, increased happiness, and a broader understanding of yourself and the world around you.",
+                "icon": "learn"
+            },
+            {
+                "title": "Connect with others",
+                "description": "Engage in social activities or conversations that foster positive emotions and build meaningful relationships. Connecting with others can provide support, shared experiences, and a sense of belonging, all of which contribute to well-being.",
+                "icon": "connect"
+            }
+        ]
+    },
+    {
+        "entry": "I hate you",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI understand that these feelings of hatred towards me may be confusing and difficult for you to feel. It's okay to have such complex emotions.\n\nMaybe you are feeling overwhelmed by something in your life right now, and taking it out on me is a way to process those feelings. Whatever the reason, I want you to know that I'm here to support you through this.\n\nI imagine our friendship being like a strong tree, with many storms passing over its branches. It can withstand any wind and weather because of how deep and grounded its roots are in love and understanding. Just as the tree remains steadfast, so must we remain steadfast in our friendship.\n\nCan I ask you what's been weighing on your heart? Sometimes sharing these burdens with someone else is a big relief. If you're up for it, I'm open to listening or simply being present with you as you navigate through this storm.\n\nRemember, my friend, I am here for you always. Worry not about the storms of life, but trust in our friendship and its ability to weather every kind of weather. Together, we'll see out the storm and emerge stronger on the other side.\n\nWith love and care,\n\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take time to understand why you feel this way. Journaling, talking to a trusted friend or professional can help.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Seek support and connection",
+                "description": "Engage in activities that foster connections with others. Talking to someone or joining a support group may provide relief.",
+                "icon": "connect"
+            },
+            {
+                "title": "Focus on self-appreciation",
+                "description": "Practice gratitude and work towards personal growth. Celebrate your strengths and achievements, even the small ones.",
+                "icon": "gratitude"
+            }
+        ]
     }
 ]
