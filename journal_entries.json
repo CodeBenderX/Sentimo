@@ -20,5 +20,27 @@
                 "icon": "move"
             }
         ]
+    },
+    {
+        "entry": "i want to break free",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can sense the strength and determination in your words - \"i want to break free.\" It's so brave and powerful to name what you desire for yourself. Breaking free from expectations, doubts, or anything that no longer serves your truest self is a courageous act of liberation.\n\nWhen I think back on times when I wanted to break free too, I remember the feeling of being weighed down by what others expected of me versus my own authentic yearnings. The heaviness in my heart lifted just a little bit every time I chose to listen to my inner wisdom and follow my truth, even if it meant going against the grain.\n\nDoesn't it feel good when you're moving towards what you truly love and align with? It's like feeling the sun's warmth on your skin after being cooped up in shadow. And yet, change isn't always easy or comfortable - there can be fear and trembling as we step into the unknown, but that discomfort is usually fleeting compared to the freedom and joy of living our dreams.\n\nI'm here for you if you want to talk through any of it more deeply. Maybe share a bit about what's weighing on your spirit right now? Or perhaps just know that I believe in your ability to break free and be exactly who you are meant to be, unburdened by the false chains of expectations. \n\nYour friend who understands,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Reflect on your goals and aspirations",
+                "description": "Take time to think about what you want to achieve in life and why breaking free is important to you. Journal about your thoughts, feelings, and dreams.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Create a plan for personal growth",
+                "description": "Break down your goals into smaller, achievable steps. Set milestones and deadlines to help you stay motivated and on track.",
+                "icon": "create"
+            },
+            {
+                "title": "Embrace change and take action",
+                "description": "Take small steps towards breaking free from limitations or habits that no longer serve you. Be open to new experiences and opportunities for growth.",
+                "icon": "journey"
+            }
+        ]
     }
 ]
