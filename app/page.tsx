@@ -225,6 +225,21 @@ export default function Home() {
     setAiResponse(entry.aiResponse);
     setSuggestedActions(entry.suggestions || []);
   };
+  const handleClearAllEntries = () => {
+    if (confirm("Are you sure you want to delete all journal entries? This cannot be undone.")) {
+      setEntries([]);
+      localStorage.removeItem("journalEntries");
+      setSelectedEntry(null);
+      setSubmitted(false);
+      setAiResponse("");
+      setJournalEntry("");
+      setSentiment("");
+      setSuggestedActions([]);
+      setIsConcerning(false);
+      setResources(null);
+      setError("");
+    }
+  };
 
   // Add this function
   const migrateOldEntries = (entries: any[]): JournalEntry[] => {
@@ -247,7 +262,7 @@ export default function Home() {
       }
     }
   }, []);
-  
+
   useEffect(() => {
     // Save entries to local storage whenever they change
     if (entries.length > 0) {
@@ -492,9 +507,6 @@ export default function Home() {
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
         {/* Update logo here   */}
-
-
-
         <Card className="w-full max-w-2xl border-none shadow-lg">
           {!submitted ? (
             <>
@@ -574,7 +586,6 @@ export default function Home() {
                           {aiResponse ||
                             "I'm glad to hear from you today! How can I help support you?"}
                         </p>
-
                           {/* Mental Health Resources (if concerning content detected) */}
 
                         {isConcerning && (resources || defaultResources) &&
@@ -584,6 +595,7 @@ export default function Home() {
                     </CardContent>
                   </Card>
                 </div>
+
 
                   <div>
                     <h2 className="font-medium text-[#2D3142] mb-2">
