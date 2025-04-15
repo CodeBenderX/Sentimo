@@ -1,3 +1,11 @@
+/*
+Author: Bianca Salunga
+Last Modified by: Bianca Salunga, 
+Date Last Modified: 2025-04-14
+Program Description: Added speech-to-text feature
+    0.1 - 2025-04-14: Initial creation
+*/
+
 "use client"
 
 import { useState, useEffect } from "react"
