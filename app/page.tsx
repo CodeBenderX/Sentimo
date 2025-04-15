@@ -32,6 +32,8 @@ import { AlertCircleIcon, AlertTriangle, Phone, Globe } from "lucide-react";
 import Image from "next/image";
 import { MainNav } from "@/components/layers/navigation";
 
+import { SpeechToText } from "@/components/speech-to-text"
+
 // Import icons for suggested actions
 import {
   BookOpen,
@@ -531,12 +533,25 @@ export default function Home() {
                     </AlertDescription>
                   </Alert>
                 )}
-                <Textarea
-                  placeholder="Write your thoughts here..."
-                  className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
-                  value={journalEntry}
-                  onChange={(e) => setJournalEntry(e.target.value)}
-                />
+                <div className="relative">
+                  <Textarea
+                    placeholder="Write your thoughts here..."
+                    className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white pr-12"
+                    value={journalEntry}
+                    onChange={(e) => setJournalEntry(e.target.value)}
+                  />
+                  <div className="absolute bottom-3 right-3">
+                    <SpeechToText
+                      onTranscript={(text) => {
+                        setJournalEntry((prev) => {
+                          // Add a space if the previous entry doesn't end with one
+                          const spacer = prev.trim().length > 0 && !prev.endsWith(" ") ? " " : ""
+                          return prev + spacer + text
+                        })
+                      }}
+                    />
+                  </div>
+                </div>
               </CardContent>
               <CardFooter className="flex justify-between">
                 <span className="text-[#5D6470] text-[14px]">
