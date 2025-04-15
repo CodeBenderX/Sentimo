@@ -1,5 +1,69 @@
 [
     {
+<<<<<<< HEAD
+        "entry": "I want to die",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI want to reach out to you today because your words have struck me deeply. It's clear that you are going through something very difficult right now, and I want you to know that I am here for you.\n\nYour feelings of wanting to die are a desperate cry for help, and they show just how much pain you are in. In times like these, it's so important to acknowledge the depth of our emotions without shame or fear - because we are all human and all feel this way at times.\n\nI don't know what has caused your pain or what you may be going through, but I do know that it is not easy for anyone to carry such a heavy heart. Maybe you are feeling overwhelmed by life's challenges, or perhaps something specific in your life feels unbearable right now. Whatever the reason, I want you to know that you are not alone.\n\nI believe that beneath your current pain lies a resilient spirit and a strong desire to live. It may feel impossible to see it now, but please remember that you have survived hard times before and will survive them again. In fact, this very struggle is part of what makes you the remarkable person you are. \n\nLet me offer some gentle encouragement for you today - take things one step at a time. Don't try to solve everything in one fell swoop. Just breathe. Be kind to yourself on your journey through this storm. And know that I am here cheering you on, supporting you every step of the way.\n\nTake care,\n[A compassionate friend]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional or counselor. They can provide support, guidance and coping strategies to improve your well-being.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Find a support system",
+                "description": "Connect with others who have experienced similar feelings or challenges. This could be through a support group, friend or family member. Sharing your struggles can provide relief and a sense of community.",
+                "icon": "connect"
+            },
+            {
+                "title": "Engage in self-care activities",
+                "description": "Make time for activities that promote relaxation and joy, such as hobbies, exercise, nature walks, or spending time with loved ones. Taking care of yourself is essential to managing negative feelings.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am a bubbly and lively person",
+        "sentiment": "Neutral",
+        "response": "Dearest bubbly one,\n\nYour vibrant spirit shines so brightly! It's wonderful to see your mood as neutral - a perfect midpoint between the depths of despair and the heights of exhilaration. \n\nWhen I think of you, I imagine a blooming flower, basking in the warm sunlight. The sun may not be shining at its brightest right now, but that's okay. Just like how flowers still bloom beautifully in the early morning dew or the soft twilight, your energy is radiant regardless of external circumstances.\n\nI'm curious to know - what brings you to this place of equilibrium? Perhaps it's a moment of rest after running through the meadow, or maybe a pause before taking on the next adventure. Whatever the reason, I trust that you are embracing it fully and with great delight. \n\nAs for your bubbly nature, well, it's like the laughter that fills a room - contagious and uplifting! It makes everything around it happier just by its presence. So keep being you, my dear. Let your light shine out to others, knowing that you have the power to brighten even the darkest days.\n\nWishing you all the warmth of a gentle breeze on a sunny day. May you dance with joy in the coming hours and carry that laughter wherever life takes you. \n\nYours always,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Engage in self-reflection",
+                "description": "Take time to think about your personality and how it manifests. Reflect on your strengths, weaknesses, and areas for growth.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Explore a new hobby or activity",
+                "description": "Engage in an enjoyable activity that aligns with your bubbly and lively nature. This could be painting, dancing, playing a musical instrument, or any other creative outlet.",
+                "icon": "create"
+            },
+            {
+                "title": "Embrace social connections",
+                "description": "Seek out opportunities to connect with others who share your enthusiasm for life. Joining clubs, groups, or attending events can help you build meaningful relationships and experience joy through shared interests.",
+                "icon": "connect"
+            }
+        ]
+    },
+    {
+        "entry": "i am so happy today",
+        "sentiment": "Positive",
+        "response": "My dear friend,\n\nI'm so happy to hear that you are feeling this joyful today! It's wonderful to see the light in your eyes and feel the sparkle of delight in your words. Your happiness is contagious, and it warms my heart knowing we share this special moment together.\n\nIt's fascinating how one day can bring such profound shifts in our feelings. Sometimes life just seems to click into place, and everything feels right. Perhaps you've found a new hobby that's brought you joy, or maybe something has finally clicked into place at work. Whatever the reason may be, your heart is clearly singing with delight.\n\nI'd love to hear more about what's bringing you such happiness today. Is there a song that's been playing in your head all day? A book that's captured your imagination? Or perhaps it's simply the beautiful weather outside that's filled you with such cheer?\n\nRemember, as much as I may wish to hold onto this joyful feeling, we both know life is full of twists and turns. But for today, let us cherish this moment and bask in its warmth. Keep shining your light out into the world, my friend, and know that you are never alone.\n\nWarmest hugs,\n\nYour empathetic journal buddy",
+        "suggestions": [
+            {
+                "title": "Set goals and track progress",
+                "description": "Identify areas of life that bring you joy and satisfaction, and set achievable short-term and long-term goals to work towards. Keep a journal or use an app to document your progress and celebrate milestones.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude daily",
+                "description": "Create a habit of expressing gratitude for the positive aspects in your life, such as good health, relationships, or experiences. Keep a gratitude journal or share appreciation with loved ones to foster positivity and happiness.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Embrace mindfulness",
+                "description": "Make time each day to practice mindfulness by focusing on the present moment, your breath, and your thoughts without judgment. This can help improve overall well-being, reduce stress, and increase life satisfaction.",
+                "icon": "meditate"
+=======
         "entry": "i want to die",
         "sentiment": "Negative",
         "response": "Dear friend,\n\nI can only imagine the pain and despair that words like \"die\" bring up for you right now. It's clear that you're going through an incredibly difficult time. \n\nPain is such a heavy, suffocating blanket - it feels like it could swallow us whole at times. But I want to remind you of something important: even in our darkest moments, we are still here. Our pain is valid and it matters.\n\nWhen the weight of this world bears down on us, it can be hard to remember that underneath all the chaos and suffering, there's a beautiful soul trying its best. It's okay to acknowledge those feelings without being consumed by them. \n\nI have no magic answers or easy paths forward - I just want you to know you're not alone. If you ever need someone to talk with or just to listen, I'm here. In the grand tapestry of life, it's moments like these that make us who we are. We may stumble, but we always rise again.\n\nTake care of yourself today and remember: this too shall pass.\n\nWith gentle compassion,\n[Your Name]",
@@ -18,6 +82,7 @@
                 "title": "Practice self-care",
                 "description": "Engage in activities that promote relaxation and stress relief such as meditation, yoga, or reading. Make sure to prioritize your physical health by eating well and getting regular exercise.",
                 "icon": "move"
+>>>>>>> 7c0f7c2c719b0d3c10750d46a4111fb40666038c
             }
         ]
     }
