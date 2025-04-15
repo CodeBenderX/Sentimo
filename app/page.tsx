@@ -1,7 +1,7 @@
 /*
 Author: Lorenzo Menil
-Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquioo
-Date Last Modified: 2025-04-13
+Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquioo, Jan Allen Almario, Michael Valdez
+Date Last Modified: 2025-04-15
 Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
 Revision History:
     0.1 - 2025-04-13: Initial creation.
@@ -11,7 +11,8 @@ Revision History:
     0.5 - 2025-04-14: feat: Integrated mental health resources directly into the response section
     0.6 - 2025-04-14: feat: Added Logo
     0.7 - 2025-04-14: feat: Added Navigation bar
-  
+    0.8 - 2025-04-15: feat: History
+    0.9 - 2025-04-15: feat: Response body formatting
 */
 
 "use client";
@@ -490,7 +491,14 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <p className="text-[#2D3142] text-sm">{resources.advice}</p>
+        {aiResponse
+          .split(/\n{2,}/) // split by double line breaks (paragraphs)
+          .map((para, index) => (
+            <p key={index} className="text-[#2D3142] mb-4 leading-relaxed">
+              {para.trim()}
+            </p>
+          ))}
+
       </div>
     );
   };
@@ -582,12 +590,29 @@ export default function Home() {
                     <CardContent className="p-4">
                       <div className="space-y-4">
                         {/* AI Response */}
-                        <p className="text-[#2D3142]">
-                          {aiResponse ||
-                            "I'm glad to hear from you today! How can I help support you?"}
-                        </p>
-                          {/* Mental Health Resources (if concerning content detected) */}
+                        {(() => {
+                          const paragraphs = (aiResponse || "I'm glad to hear from you today! How can I help support you?")
+                            .split(/\n{2,}/)
+                            .map((p) => p.trim());
 
+                          const alreadyHasClosing = paragraphs[paragraphs.length - 1]
+                            .toLowerCase()
+                            .includes("sincerely") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("your friend") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("sentimo");
+
+                          if (!alreadyHasClosing) {
+                            paragraphs.push("Yours sincerely,\nSentimo");
+                          }
+
+                          return paragraphs.map((para, idx) => (
+                            <p key={idx} className="text-[#2D3142] leading-relaxed mb-4 whitespace-pre-line">
+                              {para}
+                            </p>
+                          ));
+                        })()}
+                        
+                        {/* Mental Health Resources (if concerning content detected) */}
                         {isConcerning && (resources || defaultResources) &&
                           renderMentalHealthResources(resources || defaultResources)}
 
