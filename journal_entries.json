@@ -86,5 +86,27 @@
                 "icon": "create"
             }
         ]
+    },
+    {
+        "entry": "adadadadadaddad",
+        "sentiment": "Neutral",
+        "response": "My dear friend,\n\nIt seems your current state is one of neutral emotions - perhaps a bit like the sky on an overcast day, where nothing seems particularly bright or dark but just exists in its own quiet way.\n\nI wonder if you're feeling caught between two worlds right now? Maybe like that old wooden door creaking open and shut, back and forth between being closed and ajar. There's no one side to lean on completely - it feels like there is potential and peace waiting for you on either side but the door just won't fully swing either way.\n\nI hope you'll allow yourself some space in this moment to sit with your neutral mood, without needing to rush towards positivity or away from negativity. Perhaps it's a signal that all is well, that you're simply present and grounded in your own life right now.\n\nWould you be open to sharing more about what has been on your mind lately? Sometimes just naming our feelings to someone else can bring them into sharper focus and make space for new insights or perspectives. \n\nI'm here to listen with an open heart. May you find the peace and clarity you seek within yourself. \n\nWith compassionate care,\n\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to think about how you're feeling and why. Consider what might be causing these emotions and explore them in a calm, non-judgmental way.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Set personal goals",
+                "description": "Identify areas of your life where you want to make improvements or changes. Break down larger goals into smaller, achievable steps for better progress and motivation.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude",
+                "description": "Make a list of things you are grateful for in your life. This can help shift your focus to the positive aspects and improve overall happiness and well-being.",
+                "icon": "gratitude"
+            }
+        ]
     }
 ]
