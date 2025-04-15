@@ -1,9 +1,12 @@
 let userConfig = undefined
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  reactStrictMode: true,
+  pageExtensions: ['ts', 'tsx'],
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -15,6 +18,7 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  devIndicators: false
 }
 
 if (userConfig) {

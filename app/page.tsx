@@ -1,7 +1,7 @@
 /*
 Author: Lorenzo Menil
-Last Modified by: Lorenzo Menil, Bianca Salunga, 
-Date Last Modified: 2025-04-13
+Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquioo, Jan Allen Almario, Michael Valdez
+Date Last Modified: 2025-04-15
 Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
 Revision History:
     0.1 - 2025-04-13: Initial creation.
@@ -9,7 +9,10 @@ Revision History:
     0.3 - 2025-04-13: feat: Sentiment emojis and GIFs, enhance journal entry responses
     0.4 - 2025-04-13: feat: Added Detection of concerning content with immediate feedback and added support resources.
     0.5 - 2025-04-14: feat: Integrated mental health resources directly into the response section
-  
+    0.6 - 2025-04-14: feat: Added Logo
+    0.7 - 2025-04-14: feat: Added Navigation bar
+    0.8 - 2025-04-15: feat: History
+    0.9 - 2025-04-15: feat: Response body formatting
 */
 
 "use client";
@@ -27,6 +30,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { AlertCircleIcon, AlertTriangle, Phone, Globe } from "lucide-react";
 import Image from "next/image";
+
 import { SpeechToText } from "@/components/speech-to-text"
 
 // Import icons for suggested actions
@@ -42,6 +46,8 @@ import {
   Heart,
   GraduationCap,
 } from "lucide-react";
+
+import { JournalEntry} from "@/components/layers/JournalEntryList";
 
 // Interface for suggested actions
 interface SuggestedAction {
@@ -73,6 +79,8 @@ export default function Home() {
   const [suggestedActions, setSuggestedActions] = useState<SuggestedAction[]>(
     []
   );
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
+  const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
   const [isConcerning, setIsConcerning] = useState(false);
   const [resources, setResources] = useState<MentalHealthResource | null>(null);
   const [showWarning, setShowWarning] = useState(false);
@@ -117,10 +125,6 @@ export default function Home() {
   const handleSubmit = async () => {
     if (journalEntry.trim()) {
       setIsLoading(true);
-      setError("");
-      setIsConcerning(false);
-      setResources(null);
-
       try {
         const response = await fetch("/api/journal", {
           method: "POST",
@@ -133,46 +137,70 @@ export default function Home() {
         const data = await response.json();
 
         if (data.success) {
+          // Create new entry object
+          const newEntry: JournalEntry = {
+            id: Date.now().toString(), // Generate unique ID
+            content: journalEntry,
+            date: new Date().toLocaleDateString(),
+            sentiment: data.sentiment || "Balanced",
+            isConcerning: data.is_concerning === true,
+            aiResponse: data.response,
+            suggestions: data.suggestions || []
+          };
 
-          setAiResponse(data.response)
-          setSentiment(data.sentiment || "Balanced")
-          setSuggestedActions(data.suggestions || [])
+          // Get existing entries from localStorage
+          const existingEntries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+          
+          // Add new entry to the beginning of the array
+          const updatedEntries = [newEntry, ...existingEntries];
+          
+          // Save back to localStorage
+          localStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
+
+          setSubmitted(true);
+          setAiResponse(data.response);
+          setSentiment(data.sentiment || "Balanced");
+          setSuggestedActions(data.suggestions || []);
 
           const textHasConcerningContent = detectConcerningContent(journalEntry)
 
           setIsConcerning(data.is_concerning === true || textHasConcerningContent)
 
           if (data.resources) {
-            setResources(data.resources)
+            setResources(data.resources);
           } else if (data.is_concerning === true || textHasConcerningContent) {
             // If no resources provided but content is concerning, use defaults
-            setResources(defaultResources)
+            setResources(defaultResources);
           }
 
           setApiConnected(true)
         } else {
-          setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
-          setError("Failed to connect to LM Studio API")
-          const textHasConcerningContent = detectConcerningContent(journalEntry)
+          setAiResponse(
+            data.fallbackResponse ||
+              "I couldn't process your journal entry. Please try again."
+          );
+          setError("Failed to connect to LM Studio API");
+          const textHasConcerningContent =
+            detectConcerningContent(journalEntry);
           if (textHasConcerningContent) {
-            setIsConcerning(true)
-            setResources(defaultResources)
+            setIsConcerning(true);
+            setResources(defaultResources);
           }
         }
       } catch (err) {
-        console.error("Error submitting journal entry:", err)
-        setError("Failed to connect to LM Studio API")
-        setAiResponse("I couldn't process your journal entry. Please try again.")
+        console.error("Error submitting journal entry:", err);
+        setError("Failed to connect to LM Studio API");
+        setAiResponse(
+          "I couldn't process your journal entry. Please try again."
+        );
 
-        const textHasConcerningContent = detectConcerningContent(journalEntry)
+        const textHasConcerningContent = detectConcerningContent(journalEntry);
         if (textHasConcerningContent) {
-          setIsConcerning(true)
-          setResources(defaultResources)
+          setIsConcerning(true);
+          setResources(defaultResources);
         }
-
       } finally {
         setIsLoading(false);
-        setSubmitted(true);
       }
     }
   };
@@ -187,7 +215,62 @@ export default function Home() {
     setResources(null);
     setError("");
     setShowWarning(false);
+    setSelectedEntry(null);
   };
+
+  const handleSelectEntry = (entry: JournalEntry) => {
+    setSelectedEntry(entry);
+    setJournalEntry(entry.content);
+    setSentiment(entry.sentiment);
+    setIsConcerning(entry.isConcerning);
+    setSubmitted(true);
+    setAiResponse(entry.aiResponse);
+    setSuggestedActions(entry.suggestions || []);
+  };
+  const handleClearAllEntries = () => {
+    if (confirm("Are you sure you want to delete all journal entries? This cannot be undone.")) {
+      setEntries([]);
+      localStorage.removeItem("journalEntries");
+      setSelectedEntry(null);
+      setSubmitted(false);
+      setAiResponse("");
+      setJournalEntry("");
+      setSentiment("");
+      setSuggestedActions([]);
+      setIsConcerning(false);
+      setResources(null);
+      setError("");
+    }
+  };
+
+  // Add this function
+  const migrateOldEntries = (entries: any[]): JournalEntry[] => {
+    return entries.map(entry => ({
+      ...entry,
+      aiResponse: entry.aiResponse || "No response saved with this entry",
+      suggestions: entry.suggestions || []
+    }));
+  };
+
+  // Then update your localStorage loading:
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('journalEntries');
+    if (savedEntries) {
+      try {
+        const parsed = JSON.parse(savedEntries);
+        setEntries(migrateOldEntries(parsed));
+      } catch (e) {
+        console.error("Failed to parse saved entries", e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save entries to local storage whenever they change
+    if (entries.length > 0) {
+      localStorage.setItem('journalEntries', JSON.stringify(entries));
+    }
+  }, [entries]);
 
   // Handle scroll to update active dot
   useEffect(() => {
@@ -355,12 +438,12 @@ export default function Home() {
         "Compile songs that match or enhance your current positive mood",
       icon: "create",
     },
-
-  ]
+  ];
 
   // Default mental health resources
   const defaultResources = {
-    message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+    message:
+      "We've noticed some concerning content in your journal entry. Please remember that help is available.",
 
     hotlines: [
       {
@@ -376,9 +459,7 @@ export default function Home() {
     ],
     advice:
       "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
-
-  }
-
+  };
 
   // Use suggested actions from API or defaults
   const displayedActions =
@@ -411,13 +492,13 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <p className="text-[#2D3142] text-sm">{resources.advice}</p>
       </div>
     );
   };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <MainNav/>
       <div className="absolute top-0 left-0 w-full h-full animate-gradient-shift bg-gradient-to-br from-[#F9F7D9] via-[#E3F6EF] to-[#F0E6FA] opacity-80"></div>
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-[#F9F7D9] blur-3xl animate-pulse-slow"></div>
@@ -427,9 +508,6 @@ export default function Home() {
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
         {/* Update logo here   */}
-
-
-
         <Card className="w-full max-w-2xl border-none shadow-lg">
           {!submitted ? (
             <>
@@ -518,13 +596,29 @@ export default function Home() {
                     <CardContent className="p-4">
                       <div className="space-y-4">
                         {/* AI Response */}
-                        <p className="text-[#2D3142]">
-                          {aiResponse ||
-                            "I'm glad to hear from you today! How can I help support you?"}
-                        </p>
+                        {(() => {
+                          const paragraphs = (aiResponse || "I'm glad to hear from you today! How can I help support you?")
+                            .split(/\n{2,}/)
+                            .map((p) => p.trim());
 
+                          const alreadyHasClosing = paragraphs[paragraphs.length - 1]
+                            .toLowerCase()
+                            .includes("sincerely") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("your friend") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("sentimo");
+
+                          if (!alreadyHasClosing) {
+                            paragraphs.push("Yours sincerely,\nSentimo");
+                          }
+
+                          return paragraphs.map((para, idx) => (
+                            <p key={idx} className="text-[#2D3142] leading-relaxed mb-4 whitespace-pre-line">
+                              {para}
+                            </p>
+                          ));
+                        })()}
+                        
                         {/* Mental Health Resources (if concerning content detected) */}
-
                         {isConcerning && (resources || defaultResources) &&
                           renderMentalHealthResources(resources || defaultResources)}
 
@@ -533,39 +627,40 @@ export default function Home() {
                   </Card>
                 </div>
 
-                <div>
-                  <h2 className="font-medium text-[#2D3142] mb-2">
-                    Suggested actions
-                  </h2>
 
-                  <div className="flex flex-col">
-                    <div
-                      ref={scrollContainerRef}
-                      className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
-                      style={{
-                        scrollbarWidth: "none",
-                        msOverflowStyle: "none",
-                      }}
-                    >
-                      {displayedActions.map((action, index) => (
-                        <Card
-                          key={index}
-                          className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
-                        >
-                          <CardContent className="p-4 flex flex-col items-start gap-3">
-                            {getIconComponent(action.icon)}
-                            <div>
-                              <h3 className="text-[#2D3142] font-semibold">
-                                {action.title}
-                              </h3>
-                              <p className="text-sm text-[#5D6470]">
-                                {action.description}
-                              </p>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
+                  <div>
+                    <h2 className="font-medium text-[#2D3142] mb-2">
+                      Suggested actions
+                    </h2>
+
+                    <div className="flex flex-col">
+                      <div
+                        ref={scrollContainerRef}
+                        className="flex flex-row gap-3 overflow-x-auto pb-2 scroll-smooth scrollbar-hide"
+                        style={{
+                          scrollbarWidth: "none",
+                          msOverflowStyle: "none",
+                        }}
+                      >
+                        {displayedActions.map((action, index) => (
+                          <Card
+                            key={index}
+                            className="bg-gradient-to-r from-[#F0F9F6] to-[#F9F7F2] border-none shadow-sm hover:shadow-md transition-shadow duration-200 flex-shrink-0 w-[250px]"
+                          >
+                            <CardContent className="p-4 flex flex-col items-start gap-3">
+                              {getIconComponent(action.icon)}
+                              <div>
+                                <h3 className="text-[#2D3142] font-semibold">
+                                  {action.title}
+                                </h3>
+                                <p className="text-sm text-[#5D6470]">
+                                  {action.description}
+                                </p>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
 
                     <div className="flex justify-center mt-4 gap-2">
                       {displayedActions.map((_, index) => (
@@ -592,9 +687,6 @@ export default function Home() {
             </>
           )}
         </Card>
-
-
-
 
       </main>
     </div>
