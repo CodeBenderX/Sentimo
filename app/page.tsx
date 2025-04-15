@@ -481,7 +481,14 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <p className="text-[#2D3142] text-sm">{resources.advice}</p>
+        {aiResponse
+          .split(/\n{2,}/) // split by double line breaks (paragraphs)
+          .map((para, index) => (
+            <p key={index} className="text-[#2D3142] mb-4 leading-relaxed">
+              {para.trim()}
+            </p>
+          ))}
+
       </div>
     );
   };
@@ -579,10 +586,30 @@ export default function Home() {
                     <Card className="rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
                       <CardContent className="p-4 space-y-4">
                         {/* AI Response */}
-                        <p className="text-[#2D3142]">
-                          {aiResponse ||
-                            "I'm glad to hear from you today! How can I help support you?"}
-                        </p>
+                        {(() => {
+                          const paragraphs = (aiResponse || "I'm glad to hear from you today! How can I help support you?")
+                            .split(/\n{2,}/)
+                            .map((p) => p.trim());
+
+                          const alreadyHasClosing = paragraphs[paragraphs.length - 1]
+                            .toLowerCase()
+                            .includes("sincerely") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("your friend") ||
+                            paragraphs[paragraphs.length - 1].toLowerCase().includes("sentimo");
+
+                          if (!alreadyHasClosing) {
+                            paragraphs.push("Yours sincerely,\nSentimo");
+                          }
+
+                          return paragraphs.map((para, idx) => (
+                            <p key={idx} className="text-[#2D3142] leading-relaxed mb-4 whitespace-pre-line">
+                              {para}
+                            </p>
+                          ));
+                        })()}
+
+
+
 
                         {/* Mental Health Resources (if concerning content detected) */}
 
