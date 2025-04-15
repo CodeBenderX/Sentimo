@@ -1,5 +1,6 @@
 [
     {
+<<<<<<< HEAD
         "entry": "I want to die",
         "sentiment": "Negative",
         "response": "Dear friend,\n\nI want to reach out to you today because your words have struck me deeply. It's clear that you are going through something very difficult right now, and I want you to know that I am here for you.\n\nYour feelings of wanting to die are a desperate cry for help, and they show just how much pain you are in. In times like these, it's so important to acknowledge the depth of our emotions without shame or fear - because we are all human and all feel this way at times.\n\nI don't know what has caused your pain or what you may be going through, but I do know that it is not easy for anyone to carry such a heavy heart. Maybe you are feeling overwhelmed by life's challenges, or perhaps something specific in your life feels unbearable right now. Whatever the reason, I want you to know that you are not alone.\n\nI believe that beneath your current pain lies a resilient spirit and a strong desire to live. It may feel impossible to see it now, but please remember that you have survived hard times before and will survive them again. In fact, this very struggle is part of what makes you the remarkable person you are. \n\nLet me offer some gentle encouragement for you today - take things one step at a time. Don't try to solve everything in one fell swoop. Just breathe. Be kind to yourself on your journey through this storm. And know that I am here cheering you on, supporting you every step of the way.\n\nTake care,\n[A compassionate friend]",
@@ -62,6 +63,26 @@
                 "title": "Embrace mindfulness",
                 "description": "Make time each day to practice mindfulness by focusing on the present moment, your breath, and your thoughts without judgment. This can help improve overall well-being, reduce stress, and increase life satisfaction.",
                 "icon": "meditate"
+=======
+        "entry": "i want to die",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI can only imagine the pain and despair that words like \"die\" bring up for you right now. It's clear that you're going through an incredibly difficult time. \n\nPain is such a heavy, suffocating blanket - it feels like it could swallow us whole at times. But I want to remind you of something important: even in our darkest moments, we are still here. Our pain is valid and it matters.\n\nWhen the weight of this world bears down on us, it can be hard to remember that underneath all the chaos and suffering, there's a beautiful soul trying its best. It's okay to acknowledge those feelings without being consumed by them. \n\nI have no magic answers or easy paths forward - I just want you to know you're not alone. If you ever need someone to talk with or just to listen, I'm here. In the grand tapestry of life, it's moments like these that make us who we are. We may stumble, but we always rise again.\n\nTake care of yourself today and remember: this too shall pass.\n\nWith gentle compassion,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional for support and guidance in managing difficult thoughts and emotions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Connect with supportive people",
+                "description": "Reach out to friends, family, or support groups to share your feelings and connect with others who can provide empathy and understanding during this challenging time.",
+                "icon": "connect"
+            },
+            {
+                "title": "Practice self-care",
+                "description": "Engage in activities that promote relaxation and stress relief such as meditation, yoga, or reading. Make sure to prioritize your physical health by eating well and getting regular exercise.",
+                "icon": "move"
+>>>>>>> 7c0f7c2c719b0d3c10750d46a4111fb40666038c
             }
         ]
     }
