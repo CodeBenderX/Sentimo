@@ -89,7 +89,7 @@ export default function JournalPage() {
   return (
     <>
       <MainNav />
-      <div className="h-[80vh] flex justify-center overflow-hidden">
+      <div className="h-[100vh] flex justify-center overflow-hidden inset-0 animate-gradient-shift bg-gradient-to-br from-[#F9F7D9] via-[#E3F6EF] to-[#F0E6FA] opacity-80">
         <main className="container py-8 px-4 max-w-4xl h-full">
           <h1 className="text-2xl font-bold mb-6 text-[#2D3142] text-center">Your Journal Entries</h1>
           <div className="h-[calc(100%-4rem)] overflow-y-auto">
