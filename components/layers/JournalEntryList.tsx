@@ -1,4 +1,11 @@
-// components/JournalEntryList.tsx
+/*
+Author: Jan Allen Almario
+Last Modified by: Jan Allen Almario
+Date Last Modified: 2025-04-13
+Program Description: This is the Journal Entry List component of the Sentimo app. It displays a list of journal entries with their sentiment, date, and content. If an entry is concerning, it shows an alert icon. The component also handles the selection of entries to view more details.
+Revision History:
+    0.1 - 2025-04-14: Initial creation.
+*/
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
