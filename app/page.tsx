@@ -558,13 +558,11 @@ export default function Home() {
                       </CardContent>
                     </Card>
                   </div>
-
+                    
                   <div className="p-4 mb-4 bg-gray-50 rounded-md shadow-sm">
                     <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
-                      <p className="text-gray-700 whitespace-pre-line">
-                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
-                      <CardContent className="p-4">
-                        <div className="space-y-4">
+                    <Card className="rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
+                      <CardContent className="p-4 space-y-4">
                           {/* AI Response */}
                           <p className="text-[#2D3142]">
                             {aiResponse ||
@@ -575,8 +573,6 @@ export default function Home() {
 
                           {isConcerning && (resources || defaultResources) &&
                             renderMentalHealthResources(resources || defaultResources)}
-
-                        </div>
                       </CardContent>
                     </Card>
                   </div>
