@@ -487,7 +487,7 @@ export default function Home() {
           alt="Sentimo Logo"
           width={128}
           height={128}
-          className="absolute top-10 center"
+          className="absolute top-10 left-1/2 transform -translate-x-1/2"
         />
         <div className="w-full max-w-2xl space-y-8">
           <Card className="w-full max-w-2xl border-none shadow-lg">
@@ -558,12 +558,11 @@ export default function Home() {
                       </CardContent>
                     </Card>
                   </div>
-
-                  <div>
+                    
+                  <div className="p-4 mb-4 bg-gray-50 rounded-md shadow-sm">
                     <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
-                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
-                      <CardContent className="p-4">
-                        <div className="space-y-4">
+                    <Card className="rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
+                      <CardContent className="p-4 space-y-4">
                           {/* AI Response */}
                           <p className="text-[#2D3142]">
                             {aiResponse ||
@@ -574,8 +573,6 @@ export default function Home() {
 
                           {isConcerning && (resources || defaultResources) &&
                             renderMentalHealthResources(resources || defaultResources)}
-
-                        </div>
                       </CardContent>
                     </Card>
                   </div>
