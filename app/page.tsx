@@ -214,6 +214,21 @@ export default function Home() {
     setAiResponse(entry.aiResponse);
     setSuggestedActions(entry.suggestions || []);
   };
+  const handleClearAllEntries = () => {
+    if (confirm("Are you sure you want to delete all journal entries? This cannot be undone.")) {
+      setEntries([]);
+      localStorage.removeItem("journalEntries");
+      setSelectedEntry(null);
+      setSubmitted(false);
+      setAiResponse("");
+      setJournalEntry("");
+      setSentiment("");
+      setSuggestedActions([]);
+      setIsConcerning(false);
+      setResources(null);
+      setError("");
+    }
+  };
 
   // Add this function
   const migrateOldEntries = (entries: any[]): JournalEntry[] => {
@@ -236,7 +251,7 @@ export default function Home() {
       }
     }
   }, []);
-  
+
   useEffect(() => {
     // Save entries to local storage whenever they change
     if (entries.length > 0) {
@@ -558,21 +573,21 @@ export default function Home() {
                       </CardContent>
                     </Card>
                   </div>
-                    
+
                   <div className="p-4 mb-4 bg-gray-50 rounded-md shadow-sm">
                     <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
                     <Card className="rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
                       <CardContent className="p-4 space-y-4">
-                          {/* AI Response */}
-                          <p className="text-[#2D3142]">
-                            {aiResponse ||
-                              "I'm glad to hear from you today! How can I help support you?"}
-                          </p>
+                        {/* AI Response */}
+                        <p className="text-[#2D3142]">
+                          {aiResponse ||
+                            "I'm glad to hear from you today! How can I help support you?"}
+                        </p>
 
-                          {/* Mental Health Resources (if concerning content detected) */}
+                        {/* Mental Health Resources (if concerning content detected) */}
 
-                          {isConcerning && (resources || defaultResources) &&
-                            renderMentalHealthResources(resources || defaultResources)}
+                        {isConcerning && (resources || defaultResources) &&
+                          renderMentalHealthResources(resources || defaultResources)}
                       </CardContent>
                     </Card>
                   </div>
@@ -627,6 +642,16 @@ export default function Home() {
                     </div>
                   </div>
                 </CardContent>
+                <div className="flex justify-center">
+                  <Button
+                    variant="destructive"
+                    className="mt-4 px-6 rounded-full"
+                    onClick={handleClearAllEntries}
+                    disabled={entries.length === 0}
+                  >
+                    Clear All Entries
+                  </Button>
+                </div>
 
                 <CardFooter className="flex justify-between">
                   <span className="text-[#5D6470] text-[14px]">
@@ -636,10 +661,10 @@ export default function Home() {
               </>
             )}
           </Card>
-            <JournalEntryList 
-              entries={entries} 
-              onSelectEntry={handleSelectEntry} 
-            />
+          <JournalEntryList
+            entries={entries}
+            onSelectEntry={handleSelectEntry}
+          />
         </div>
       </main>
     </div>
