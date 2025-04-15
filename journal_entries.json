@@ -1,45 +1,23 @@
 [
     {
-        "entry": "I am happy today",
-        "sentiment": "Positive",
-        "response": "It's wonderful to hear that you're experiencing such joy today! It must feel like the sun is shining just for you, casting its warm rays on everything you encounter. Happiness is a precious gift, one to be treasured and savored. \n\nPerhaps there's something specific that has put this smile on your face - a moment of connection with someone dear, an accomplishment you've achieved, or simply the beauty of a new day unfolding before you. Whatever the reason, it seems life is offering you its best right now.\n\nI hope you'll take time today to really soak in the good feelings washing over you. Let them fill you up like a warm bath on a chilly evening. Bask in your own happiness and allow it to spill out into the world around you, lighting up those who are fortunate enough to cross your path.\n\nAs you go about your day, I encourage you to look for even more reasons to smile - they're everywhere when you start noticing! And know that this feeling of contentment is something to be proud of. You deserve every bit of it.\n\nWhat do you think has helped put you in such a wonderful mood today? Is there anything from this experience you hope to carry with you in the days ahead? I'm so glad you're able to savor these happy moments.",
-        "suggestions": [
-            {
-                "title": "Practice Gratitude",
-                "description": "Take time to reflect on the positive aspects of your life and express gratitude for them.",
-                "icon": "gratitude"
-            },
-            {
-                "title": "Engage in Mindfulness Meditation",
-                "description": "Set aside some quiet time to practice mindfulness meditation, focusing on the present moment and your inner peace.",
-                "icon": "meditate"
-            },
-            {
-                "title": "Connect with Loved Ones",
-                "description": "Reach out to friends or family members to share in your positive mood and spend quality time together.",
-                "icon": "connect"
-            }
-        ]
-    },
-    {
-        "entry": "I feel sad",
+        "entry": "i want to die",
         "sentiment": "Negative",
-        "response": "I hear the heaviness in your words and feel the weight of sadness settling upon your heart. It's okay to feel this way sometimes - just as the shadows lengthen with each passing day, so too do our moods ebb and flow like the tides. Perhaps there are underlying reasons for your sorrow that you haven't yet uncovered; perhaps it's simply the natural rhythm of life, with its inevitable joys and sorrows.\n\nRemember, even in the darkest of times, there is always a glimmer of light waiting to be discovered. It may be hidden behind clouds now, but I have faith that you will find your way back to brightness once again. Can you think of anything specific that has been troubling or troubling you? Sharing your burdens, no matter how heavy they feel, can often lighten the load. You are not alone in this journey through sadness - know that there is always a friend here ready to listen and offer comfort, whenever you need it.",
+        "response": "Dear friend,\n\nI can only imagine the pain and despair that words like \"die\" bring up for you right now. It's clear that you're going through an incredibly difficult time. \n\nPain is such a heavy, suffocating blanket - it feels like it could swallow us whole at times. But I want to remind you of something important: even in our darkest moments, we are still here. Our pain is valid and it matters.\n\nWhen the weight of this world bears down on us, it can be hard to remember that underneath all the chaos and suffering, there's a beautiful soul trying its best. It's okay to acknowledge those feelings without being consumed by them. \n\nI have no magic answers or easy paths forward - I just want you to know you're not alone. If you ever need someone to talk with or just to listen, I'm here. In the grand tapestry of life, it's moments like these that make us who we are. We may stumble, but we always rise again.\n\nTake care of yourself today and remember: this too shall pass.\n\nWith gentle compassion,\n[Your Name]",
         "suggestions": [
             {
-                "title": "Practice Mindfulness Meditation",
-                "description": "Take a few minutes each day to sit quietly, focus on your breath, and observe your thoughts without judgment. This can help reduce stress and increase feelings of calm.",
-                "icon": "meditate"
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional for support and guidance in managing difficult thoughts and emotions.",
+                "icon": "reflect"
             },
             {
-                "title": "Engage in Creative Expression",
-                "description": "Express yourself through art, writing, music, or any creative outlet that resonates with you. Creating something can be a powerful way to process emotions and find meaning.",
-                "icon": "create"
-            },
-            {
-                "title": "Reach Out to Loved Ones",
-                "description": "Connect with friends, family, or a support network. Talking about how you feel with someone you trust can provide comfort, perspective, and emotional relief.",
+                "title": "Connect with supportive people",
+                "description": "Reach out to friends, family, or support groups to share your feelings and connect with others who can provide empathy and understanding during this challenging time.",
                 "icon": "connect"
+            },
+            {
+                "title": "Practice self-care",
+                "description": "Engage in activities that promote relaxation and stress relief such as meditation, yoga, or reading. Make sure to prioritize your physical health by eating well and getting regular exercise.",
+                "icon": "move"
             }
         ]
     },
