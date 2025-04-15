@@ -38,7 +38,7 @@ export default function TeamPage() {
       },
     },
     {
-      name: "Lorenzo Menil",
+      name: "Lorenzo Menil Jr.",
       imageUrl: "/Aboutus-Lorenzo.jpg",
       social: {
         email: "lorenzo@example.com",
