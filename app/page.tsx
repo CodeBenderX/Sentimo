@@ -1,6 +1,6 @@
 /*
 Author: Lorenzo Menil
-Last Modified by: Lorenzo Menil, Bianca Salunga, 
+Last Modified by: Lorenzo Menil, Bianca Salunga, Angelo Tiquioo
 Date Last Modified: 2025-04-13
 Program Description: This code implements a client-side journaling interface using React (with Next.js's "use client" directive). The component provides a form where users can submit their journal entry. Once submitted, it sends the entry to an API endpoint, processes the resulting sentiment analysis and AI-generated response, and displays these results with a dynamic UI including badges, cards, and suggested action icons.
 Revision History:
@@ -9,6 +9,8 @@ Revision History:
     0.3 - 2025-04-13: feat: Sentiment emojis and GIFs, enhance journal entry responses
     0.4 - 2025-04-13: feat: Added Detection of concerning content with immediate feedback and added support resources.
     0.5 - 2025-04-14: feat: Integrated mental health resources directly into the response section
+    0.6 - 2025-04-14: feat: Added Logo
+    0.7 - 2025-04-14: feat: Added Navigation bar
   
 */
 
@@ -27,6 +29,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { AlertCircleIcon, AlertTriangle, Phone, Globe } from "lucide-react";
 import Image from "next/image";
+import { MainNav } from "@/components/layers/navigation";
 
 // Import icons for suggested actions
 import {
@@ -42,8 +45,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-import { JournalEntry, JournalEntryList } from "@/components/JournalEntryList";
-import { set } from "date-fns";
+import { JournalEntry} from "@/components/layers/JournalEntryList";
 
 // Interface for suggested actions
 interface SuggestedAction {
@@ -121,10 +123,6 @@ export default function Home() {
   const handleSubmit = async () => {
     if (journalEntry.trim()) {
       setIsLoading(true);
-      setError("");
-      setIsConcerning(false);
-      setResources(null);
-
       try {
         const response = await fetch("/api/journal", {
           method: "POST",
@@ -137,57 +135,70 @@ export default function Home() {
         const data = await response.json();
 
         if (data.success) {
+          // Create new entry object
+          const newEntry: JournalEntry = {
+            id: Date.now().toString(), // Generate unique ID
+            content: journalEntry,
+            date: new Date().toLocaleDateString(),
+            sentiment: data.sentiment || "Balanced",
+            isConcerning: data.is_concerning === true,
+            aiResponse: data.response,
+            suggestions: data.suggestions || []
+          };
 
-          setAiResponse(data.response)
-          setSentiment(data.sentiment || "Balanced")
-          setSuggestedActions(data.suggestions || [])
+          // Get existing entries from localStorage
+          const existingEntries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+          
+          // Add new entry to the beginning of the array
+          const updatedEntries = [newEntry, ...existingEntries];
+          
+          // Save back to localStorage
+          localStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
+
+          setSubmitted(true);
+          setAiResponse(data.response);
+          setSentiment(data.sentiment || "Balanced");
+          setSuggestedActions(data.suggestions || []);
 
           const textHasConcerningContent = detectConcerningContent(journalEntry)
-          const isConcerningEntry = data.is_concerning === true || textHasConcerningContent;
+
           setIsConcerning(data.is_concerning === true || textHasConcerningContent)
 
           if (data.resources) {
-            setResources(data.resources)
+            setResources(data.resources);
           } else if (data.is_concerning === true || textHasConcerningContent) {
             // If no resources provided but content is concerning, use defaults
-            setResources(defaultResources)
+            setResources(defaultResources);
           }
 
-          const newEntry: JournalEntry = {
-            id: Date.now().toString(),
-            content: journalEntry,
-            date: currentDate,
-            sentiment: data.sentiment || "Balanced",
-            isConcerning: isConcerningEntry,
-            aiResponse: data.response,
-            suggestions: data.suggestions || [],
-          };
-
-          setEntries([newEntry, ...entries]);
           setApiConnected(true)
         } else {
-          setAiResponse(data.fallbackResponse || "I couldn't process your journal entry. Please try again.")
-          setError("Failed to connect to LM Studio API")
-          const textHasConcerningContent = detectConcerningContent(journalEntry)
+          setAiResponse(
+            data.fallbackResponse ||
+              "I couldn't process your journal entry. Please try again."
+          );
+          setError("Failed to connect to LM Studio API");
+          const textHasConcerningContent =
+            detectConcerningContent(journalEntry);
           if (textHasConcerningContent) {
-            setIsConcerning(true)
-            setResources(defaultResources)
+            setIsConcerning(true);
+            setResources(defaultResources);
           }
         }
       } catch (err) {
-        console.error("Error submitting journal entry:", err)
-        setError("Failed to connect to LM Studio API")
-        setAiResponse("I couldn't process your journal entry. Please try again.")
+        console.error("Error submitting journal entry:", err);
+        setError("Failed to connect to LM Studio API");
+        setAiResponse(
+          "I couldn't process your journal entry. Please try again."
+        );
 
-        const textHasConcerningContent = detectConcerningContent(journalEntry)
+        const textHasConcerningContent = detectConcerningContent(journalEntry);
         if (textHasConcerningContent) {
-          setIsConcerning(true)
-          setResources(defaultResources)
+          setIsConcerning(true);
+          setResources(defaultResources);
         }
-
       } finally {
         setIsLoading(false);
-        setSubmitted(true);
       }
     }
   };
@@ -214,6 +225,21 @@ export default function Home() {
     setAiResponse(entry.aiResponse);
     setSuggestedActions(entry.suggestions || []);
   };
+  const handleClearAllEntries = () => {
+    if (confirm("Are you sure you want to delete all journal entries? This cannot be undone.")) {
+      setEntries([]);
+      localStorage.removeItem("journalEntries");
+      setSelectedEntry(null);
+      setSubmitted(false);
+      setAiResponse("");
+      setJournalEntry("");
+      setSentiment("");
+      setSuggestedActions([]);
+      setIsConcerning(false);
+      setResources(null);
+      setError("");
+    }
+  };
 
   // Add this function
   const migrateOldEntries = (entries: any[]): JournalEntry[] => {
@@ -236,7 +262,7 @@ export default function Home() {
       }
     }
   }, []);
-  
+
   useEffect(() => {
     // Save entries to local storage whenever they change
     if (entries.length > 0) {
@@ -410,12 +436,12 @@ export default function Home() {
         "Compile songs that match or enhance your current positive mood",
       icon: "create",
     },
-
-  ]
+  ];
 
   // Default mental health resources
   const defaultResources = {
-    message: "We've noticed some concerning content in your journal entry. Please remember that help is available.",
+    message:
+      "We've noticed some concerning content in your journal entry. Please remember that help is available.",
 
     hotlines: [
       {
@@ -431,9 +457,7 @@ export default function Home() {
     ],
     advice:
       "Please reach out to a mental health professional, trusted friend, or family member. You don't have to face these feelings alone.",
-
-  }
-
+  };
 
   // Use suggested actions from API or defaults
   const displayedActions =
@@ -473,6 +497,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      <MainNav/>
       <div className="absolute top-0 left-0 w-full h-full animate-gradient-shift bg-gradient-to-br from-[#F9F7D9] via-[#E3F6EF] to-[#F0E6FA] opacity-80"></div>
       <div className="absolute top-0 left-0 w-full h-full opacity-30">
         <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-[#F9F7D9] blur-3xl animate-pulse-slow"></div>
@@ -482,103 +507,95 @@ export default function Home() {
 
       <main className="relative flex min-h-screen flex-col items-center justify-center py-12 px-4">
         {/* Update logo here   */}
-        <Image
-          src="/sentimo1.png"
-          alt="Sentimo Logo"
-          width={128}
-          height={128}
-          className="absolute top-10 center"
-        />
-        <div className="w-full max-w-2xl space-y-8">
-          <Card className="w-full max-w-2xl border-none shadow-lg">
-            {!submitted ? (
-              <>
-                <CardHeader className="pb-0">
-                  <Badge
-                    variant="outline"
-                    className="px-4 py-2 font-normal w-fit"
-                  >
-                    Hello, How are you today?
-                  </Badge>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  {showWarning && (
+        <Card className="w-full max-w-2xl border-none shadow-lg">
+          {!submitted ? (
+            <>
+              <CardHeader className="pb-0">
+                <Badge
+                  variant="outline"
+                  className="px-4 py-2 font-normal w-fit"
+                >
+                  Hello, How are you today?
+                </Badge>
+              </CardHeader>
+              <CardContent className="pt-4">
+                {showWarning && (
 
-                    <Alert variant="warning" className="bg-amber-50 border-amber-200">
-                      <AlertTriangle className="h-5 w-5 text-amber-600" />
-                      <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
-                      <AlertDescription className="text-amber-700">
-                        We've noticed your entry contains content that suggests you might be going through a difficult
-                        time. When you submit, we'll provide resources that may help. Remember, you're not alone.
+                  <Alert variant="warning" className="bg-amber-50 border-amber-200">
+                    <AlertTriangle className="h-5 w-5 text-amber-600" />
+                    <AlertTitle className="text-amber-800 font-medium">We're Here For You</AlertTitle>
+                    <AlertDescription className="text-amber-700">
+                      We've noticed your entry contains content that suggests you might be going through a difficult
+                      time. When you submit, we'll provide resources that may help. Remember, you're not alone.
 
-                      </AlertDescription>
-                    </Alert>
-                  )}
-                  <Textarea
-                    placeholder="Write your thoughts here..."
-                    className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
-                    value={journalEntry}
-                    onChange={(e) => setJournalEntry(e.target.value)}
-                  />
-                </CardContent>
-                <CardFooter className="flex justify-between">
-                  <span className="text-[#5D6470] text-[14px]">
-                    {currentDate}
-                  </span>
-                  <Button
-                    variant="default"
-                    className="rounded-full px-6"
-                    onClick={handleSubmit}
-                    disabled={!journalEntry.trim() || isLoading}
-                  >
-                    {isLoading ? "Processing..." : "Submit"}
-                  </Button>
-                </CardFooter>
-              </>
-            ) : (
-              <>
-                <CardContent className="pt-6 space-y-6">
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <h2 className="font-medium text-[#2D3142]">Your entry</h2>
+                    </AlertDescription>
+                  </Alert>
+                )}
+                <Textarea
+                  placeholder="Write your thoughts here..."
+                  className="min-h-[200px] resize-none border-[#E2E8F0] focus:border-[#05a653] focus:ring-[#05a653] bg-white"
+                  value={journalEntry}
+                  onChange={(e) => setJournalEntry(e.target.value)}
+                />
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <span className="text-[#5D6470] text-[14px]">
+                  {currentDate}
+                </span>
+                <Button
+                  variant="default"
+                  className="rounded-full px-6"
+                  onClick={handleSubmit}
+                  disabled={!journalEntry.trim() || isLoading}
+                >
+                  {isLoading ? "Processing..." : "Submit"}
+                </Button>
+              </CardFooter>
+            </>
+          ) : (
+            <>
+              <CardContent className="pt-6 space-y-6">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <h2 className="font-medium text-[#2D3142]">Your entry</h2>
 
-                      <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
+                    <Button variant="default" className="rounded-full px-6" onClick={handleNewEntry}>
 
-                        Write new entry
-                      </Button>
-                    </div>
-                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
-                      <CardContent className="p-4">
-                        <div className="flex justify-between items-start">
-                          <p>{journalEntry}</p>
-                          {sentiment && (
-                            <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
+                      Write new entry
+                    </Button>
                   </div>
+                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-noneborder-none shadow-sm">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start">
+                        <p>{journalEntry}</p>
+                        {sentiment && (
+                          <span className="ml-2">{getSentimentGif()}</span> //Change getSentimentGif to getSentimentEmoji if you want to use emojis instead of gifs
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
 
-                  <div>
-                    <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
-                    <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
-                      <CardContent className="p-4">
-                        <div className="space-y-4">
-                          {/* AI Response */}
-                          <p className="text-[#2D3142]">
-                            {aiResponse ||
-                              "I'm glad to hear from you today! How can I help support you?"}
-                          </p>
-
+                <div>
+                  <h2 className="font-medium text-[#2D3142] mb-2">Response</h2>
+                  <Card className="bg-white rounded-[18px] bg-[#F9F6F3] border-none shadow-sm">
+                    <CardContent className="p-4">
+                      <div className="space-y-4">
+                        {/* AI Response */}
+                        <p className="text-[#2D3142]">
+                          {aiResponse ||
+                            "I'm glad to hear from you today! How can I help support you?"}
+                        </p>
                           {/* Mental Health Resources (if concerning content detected) */}
 
-                          {isConcerning && (resources || defaultResources) &&
-                            renderMentalHealthResources(resources || defaultResources)}
+                        {isConcerning && (resources || defaultResources) &&
+                          renderMentalHealthResources(resources || defaultResources)}
 
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+
 
                   <div>
                     <h2 className="font-medium text-[#2D3142] mb-2">
@@ -614,36 +631,32 @@ export default function Home() {
                         ))}
                       </div>
 
-                      <div className="flex justify-center mt-4 gap-2">
-                        {displayedActions.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => scrollToCard(index)}
+                    <div className="flex justify-center mt-4 gap-2">
+                      {displayedActions.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => scrollToCard(index)}
 
-                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
-                              }`}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${activeDot === index ? "bg-[#05a653]" : "bg-[#D1D5DB]"
+                            }`}
 
-                            aria-label={`Go to slide ${index + 1}`}
-                          />
-                        ))}
-                      </div>
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
                     </div>
                   </div>
-                </CardContent>
+                </div>
+              </CardContent>
 
-                <CardFooter className="flex justify-between">
-                  <span className="text-[#5D6470] text-[14px]">
-                    {currentDate}
-                  </span>
-                </CardFooter>
-              </>
-            )}
-          </Card>
-            <JournalEntryList 
-              entries={entries} 
-              onSelectEntry={handleSelectEntry} 
-            />
-        </div>
+              <CardFooter className="flex justify-between">
+                <span className="text-[#5D6470] text-[14px]">
+                  {currentDate}
+                </span>
+              </CardFooter>
+            </>
+          )}
+        </Card>
+
       </main>
     </div>
   );

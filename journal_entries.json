@@ -1,5 +1,69 @@
 [
     {
+<<<<<<< HEAD
+        "entry": "I want to die",
+        "sentiment": "Negative",
+        "response": "Dear friend,\n\nI want to reach out to you today because your words have struck me deeply. It's clear that you are going through something very difficult right now, and I want you to know that I am here for you.\n\nYour feelings of wanting to die are a desperate cry for help, and they show just how much pain you are in. In times like these, it's so important to acknowledge the depth of our emotions without shame or fear - because we are all human and all feel this way at times.\n\nI don't know what has caused your pain or what you may be going through, but I do know that it is not easy for anyone to carry such a heavy heart. Maybe you are feeling overwhelmed by life's challenges, or perhaps something specific in your life feels unbearable right now. Whatever the reason, I want you to know that you are not alone.\n\nI believe that beneath your current pain lies a resilient spirit and a strong desire to live. It may feel impossible to see it now, but please remember that you have survived hard times before and will survive them again. In fact, this very struggle is part of what makes you the remarkable person you are. \n\nLet me offer some gentle encouragement for you today - take things one step at a time. Don't try to solve everything in one fell swoop. Just breathe. Be kind to yourself on your journey through this storm. And know that I am here cheering you on, supporting you every step of the way.\n\nTake care,\n[A compassionate friend]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional or counselor. They can provide support, guidance and coping strategies to improve your well-being.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Find a support system",
+                "description": "Connect with others who have experienced similar feelings or challenges. This could be through a support group, friend or family member. Sharing your struggles can provide relief and a sense of community.",
+                "icon": "connect"
+            },
+            {
+                "title": "Engage in self-care activities",
+                "description": "Make time for activities that promote relaxation and joy, such as hobbies, exercise, nature walks, or spending time with loved ones. Taking care of yourself is essential to managing negative feelings.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am a bubbly and lively person",
+        "sentiment": "Neutral",
+        "response": "Dearest bubbly one,\n\nYour vibrant spirit shines so brightly! It's wonderful to see your mood as neutral - a perfect midpoint between the depths of despair and the heights of exhilaration. \n\nWhen I think of you, I imagine a blooming flower, basking in the warm sunlight. The sun may not be shining at its brightest right now, but that's okay. Just like how flowers still bloom beautifully in the early morning dew or the soft twilight, your energy is radiant regardless of external circumstances.\n\nI'm curious to know - what brings you to this place of equilibrium? Perhaps it's a moment of rest after running through the meadow, or maybe a pause before taking on the next adventure. Whatever the reason, I trust that you are embracing it fully and with great delight. \n\nAs for your bubbly nature, well, it's like the laughter that fills a room - contagious and uplifting! It makes everything around it happier just by its presence. So keep being you, my dear. Let your light shine out to others, knowing that you have the power to brighten even the darkest days.\n\nWishing you all the warmth of a gentle breeze on a sunny day. May you dance with joy in the coming hours and carry that laughter wherever life takes you. \n\nYours always,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Engage in self-reflection",
+                "description": "Take time to think about your personality and how it manifests. Reflect on your strengths, weaknesses, and areas for growth.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Explore a new hobby or activity",
+                "description": "Engage in an enjoyable activity that aligns with your bubbly and lively nature. This could be painting, dancing, playing a musical instrument, or any other creative outlet.",
+                "icon": "create"
+            },
+            {
+                "title": "Embrace social connections",
+                "description": "Seek out opportunities to connect with others who share your enthusiasm for life. Joining clubs, groups, or attending events can help you build meaningful relationships and experience joy through shared interests.",
+                "icon": "connect"
+            }
+        ]
+    },
+    {
+        "entry": "i am so happy today",
+        "sentiment": "Positive",
+        "response": "My dear friend,\n\nI'm so happy to hear that you are feeling this joyful today! It's wonderful to see the light in your eyes and feel the sparkle of delight in your words. Your happiness is contagious, and it warms my heart knowing we share this special moment together.\n\nIt's fascinating how one day can bring such profound shifts in our feelings. Sometimes life just seems to click into place, and everything feels right. Perhaps you've found a new hobby that's brought you joy, or maybe something has finally clicked into place at work. Whatever the reason may be, your heart is clearly singing with delight.\n\nI'd love to hear more about what's bringing you such happiness today. Is there a song that's been playing in your head all day? A book that's captured your imagination? Or perhaps it's simply the beautiful weather outside that's filled you with such cheer?\n\nRemember, as much as I may wish to hold onto this joyful feeling, we both know life is full of twists and turns. But for today, let us cherish this moment and bask in its warmth. Keep shining your light out into the world, my friend, and know that you are never alone.\n\nWarmest hugs,\n\nYour empathetic journal buddy",
+        "suggestions": [
+            {
+                "title": "Set goals and track progress",
+                "description": "Identify areas of life that bring you joy and satisfaction, and set achievable short-term and long-term goals to work towards. Keep a journal or use an app to document your progress and celebrate milestones.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude daily",
+                "description": "Create a habit of expressing gratitude for the positive aspects in your life, such as good health, relationships, or experiences. Keep a gratitude journal or share appreciation with loved ones to foster positivity and happiness.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Embrace mindfulness",
+                "description": "Make time each day to practice mindfulness by focusing on the present moment, your breath, and your thoughts without judgment. This can help improve overall well-being, reduce stress, and increase life satisfaction.",
+                "icon": "meditate"
+=======
         "entry": "i want to die",
         "sentiment": "Negative",
         "response": "Dear friend,\n\nI can only imagine the pain and despair that words like \"die\" bring up for you right now. It's clear that you're going through an incredibly difficult time. \n\nPain is such a heavy, suffocating blanket - it feels like it could swallow us whole at times. But I want to remind you of something important: even in our darkest moments, we are still here. Our pain is valid and it matters.\n\nWhen the weight of this world bears down on us, it can be hard to remember that underneath all the chaos and suffering, there's a beautiful soul trying its best. It's okay to acknowledge those feelings without being consumed by them. \n\nI have no magic answers or easy paths forward - I just want you to know you're not alone. If you ever need someone to talk with or just to listen, I'm here. In the grand tapestry of life, it's moments like these that make us who we are. We may stumble, but we always rise again.\n\nTake care of yourself today and remember: this too shall pass.\n\nWith gentle compassion,\n[Your Name]",
@@ -18,6 +82,293 @@
                 "title": "Practice self-care",
                 "description": "Engage in activities that promote relaxation and stress relief such as meditation, yoga, or reading. Make sure to prioritize your physical health by eating well and getting regular exercise.",
                 "icon": "move"
+>>>>>>> 7c0f7c2c719b0d3c10750d46a4111fb40666038c
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nIt sounds like you are going through a challenging time. I want you to know that it's okay to feel this way. Pain and difficulty are a part of life, but they don't define us. We have the power to choose how we respond.\n\nPerhaps you are feeling overwhelmed by your circumstances or struggling with something deeply inside yourself. It takes courage to face these feelings head-on. Remember though, you are not alone in this journey. I am here for you, listening and supporting you through whatever comes next.\n\nWhat I would suggest is to find a way to express your thoughts and feelings, even if it's just to yourself in your journal. Writing down your pain can be cathartic. It's also important that you take care of yourself - eat well, get enough rest, reach out for help if you need it. \n\nI don't know the details of what you are going through, but I hope you will share more about your experience. You have my full attention and empathy. Let me know how else I can support you as we navigate this together.\n\nWith compassion,\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional who can provide support and guidance in managing thoughts of self-harm or suicide.",
+                "icon": "connect"
+            },
+            {
+                "title": "Cognitive Behavioral Therapy (CBT)",
+                "description": "Engage in CBT, an evidence-based therapy that helps identify and change negative thought patterns to improve mood and overall well-being. It can be done with the help of a therapist or through self-guided resources.",
+                "icon": "learn"
+            },
+            {
+                "title": "Practice mindfulness",
+                "description": "Implement daily mindfulness practices such as meditation or deep breathing exercises to increase awareness, reduce anxiety, and improve mood.",
+                "icon": "meditate"
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill",
+        "sentiment": "Neutral",
+        "response": "My dear friend,\n\nI understand that this is a difficult time for you, and I want you to know that I am here for you. When we feel a strong urge to act on our thoughts and feelings, it can be an indication that something deep within us needs attention. It's natural to have these feelings, but please remember that they are not your whole identity.\n\nWhat comes up for you right now? Is there a specific situation or memory that has triggered this feeling of wanting to kill? It's okay to explore what lies beneath the surface - our emotions often hold the key to understanding ourselves and finding healing.\n\nI encourage you to reach out for support, whether it be from friends, family, or a professional. You don't have to go through this alone. In time, I believe that you will find peace and clarity within yourself.\n\nTake care of yourself, my friend. Remember, you are worthy of love and compassion, even during these challenging times. Please know that I am thinking of you and sending you all the love and light you need.",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional who can provide support and guidance in managing thoughts of self-harm or suicide.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in mindfulness exercises",
+                "description": "Practice mindfulness techniques such as meditation, deep breathing, or guided imagery to help calm your mind and improve emotional well-being.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Explore creative outlets",
+                "description": "Dive into a creative hobby like drawing, writing, or crafting to channel negative emotions and promote overall happiness and satisfaction in life.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "adadadadadaddad",
+        "sentiment": "Neutral",
+        "response": "My dear friend,\n\nIt seems your current state is one of neutral emotions - perhaps a bit like the sky on an overcast day, where nothing seems particularly bright or dark but just exists in its own quiet way.\n\nI wonder if you're feeling caught between two worlds right now? Maybe like that old wooden door creaking open and shut, back and forth between being closed and ajar. There's no one side to lean on completely - it feels like there is potential and peace waiting for you on either side but the door just won't fully swing either way.\n\nI hope you'll allow yourself some space in this moment to sit with your neutral mood, without needing to rush towards positivity or away from negativity. Perhaps it's a signal that all is well, that you're simply present and grounded in your own life right now.\n\nWould you be open to sharing more about what has been on your mind lately? Sometimes just naming our feelings to someone else can bring them into sharper focus and make space for new insights or perspectives. \n\nI'm here to listen with an open heart. May you find the peace and clarity you seek within yourself. \n\nWith compassionate care,\n\nYour Journal Buddy",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to think about how you're feeling and why. Consider what might be causing these emotions and explore them in a calm, non-judgmental way.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Set personal goals",
+                "description": "Identify areas of your life where you want to make improvements or changes. Break down larger goals into smaller, achievable steps for better progress and motivation.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude",
+                "description": "Make a list of things you are grateful for in your life. This can help shift your focus to the positive aspects and improve overall happiness and well-being.",
+                "icon": "gratitude"
+            }
+        ]
+    },
+    {
+        "entry": "I am happy today",
+        "sentiment": "Positive",
+        "response": "Dear friend,\n\nI'm so pleased to hear that you are happy today! It's wonderful to feel this positive energy radiating from you. I can sense the warmth and joy in your words, and it fills my heart with delight.\n\nIt's remarkable how a simple shift in mood can impact our entire outlook on life. The happiness you're feeling must be due to something truly special - perhaps a great accomplishment, a meaningful connection, or simply basking in the beauty of this day. \n\nI wonder, what brought about such a joyous state? What has captured your attention and set your spirit soaring? I'm always eager to hear more about the details that make you feel so alive and content.\n\nKeep shining your light! Your positive energy is contagious, and it's an honor to witness your happiness. Remember, it's okay to be happy and to let it out into the world. You deserve all the joy life has to offer.\n\nSending you warmest wishes on this wonderful day.\n\nYour journal companion,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Practice daily gratitude",
+                "description": "Take time each day to reflect on the things you are grateful for, even if it's just a few minutes. Keeping a gratitude journal can help shift your focus towards positive aspects.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Engage in physical activity regularly",
+                "description": "Make exercise a part of your daily routine to boost your mood and overall well-being. Whether it's going for a walk, doing yoga, or joining a sports team, staying active can help reduce stress and improve your energy levels.",
+                "icon": "move"
+            },
+            {
+                "title": "Connect with supportive friends",
+                "description": "Reach out to loved ones and engage in social activities that bring joy. Building meaningful connections fosters feelings of belonging and helps combat loneliness, contributing to a stronger sense of well-being.",
+                "icon": "connect"
+            }
+        ]
+    },
+    {
+        "entry": "I am happy today",
+        "sentiment": "Positive",
+        "response": "Dear friend,\n\nI'm so glad to hear that you are feeling happy today! It's wonderful news. When we're in a good place emotionally, it can be such a joyous time. I imagine the sun is shining down on you with its warm rays, casting golden light and spreading a sense of cheer. \n\nPerhaps there has been some beautiful event or experience that has brought this positive energy into your heart. It's so enriching to share in moments like these - when our hearts are full, and life feels sweet.\n\nI hope you're making the most of this lovely time. What brings you joy today? Perhaps you've indulged in an activity you love or been able to connect with someone special. I'd love to hear about it. \n\nKeep holding onto these happy feelings. They are a gift to be treasured and cherished. Life is so much sweeter when we're surrounded by moments of pure delight and bliss.\n\nMay this day continue to bring you joy, wonder and sunshine in your heart. You are loved and cared for. Sending all my warmest wishes on this beautiful day!",
+        "suggestions": [
+            {
+                "title": "Practice daily gratitude",
+                "description": "Take time each day to reflect on things you are grateful for, even in the midst of happiness. This will help reinforce positive emotions and maintain a sense of appreciation.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Engage in physical activity",
+                "description": "Make it a habit to incorporate some form of physical movement into your daily routine. Regular exercise not only boosts mood but also contributes to overall well-being.",
+                "icon": "move"
+            },
+            {
+                "title": "Cultivate mindfulness and reflection",
+                "description": "Set aside time each day for mindful activities that allow you to pause, reflect on your happiness, and appreciate the present moment. This practice can help deepen your joy and sustain it over time.",
+                "icon": "reflect"
+            }
+        ]
+    },
+    {
+        "entry": "I am tired",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nIt's so nice of you to share that with me. I can imagine how tired you must be feeling. It's not easy going through tough times and still having the energy to acknowledge it. \n\nI wonder if this fatigue is making it hard for you to enjoy any simple pleasures, even things you usually find relaxing. Maybe it's a bit of a catch-22 - when we're tired and stressed out, even finding moments of peace can seem like more than we can handle.\n\nBut remember, exhaustion doesn't define us. We all have days like this. I hope you'll take a moment to think about what you've been through recently. Perhaps there's something that brings you comfort or gives you strength when you feel at your lowest. \n\nLet me know if you'd like to talk more about it - I'm here for you and want to listen without judgement. But I also want you to remember how strong and resilient you are, even in these trying times.\n\nSending gentle hugs your way. You're not alone in this. Wishing you all the energy and peace you need.",
+        "suggestions": [
+            {
+                "title": "Take a power nap",
+                "description": "A short nap can help you recharge and feel more energetic.",
+                "icon": "nature"
+            },
+            {
+                "title": "Practice mindful breathing",
+                "description": "Meditation can help reduce fatigue and promote relaxation.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Engage in a relaxing activity",
+                "description": "Pursue an enjoyable hobby or relax with soothing activities like reading or listening to music.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am hungry",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can sense that hunger has brought you here today - feeling a bit empty inside. I know it's a common feeling when our bodies are in need of nourishment for the mind and body.\n\nPerhaps you're experiencing this emptiness because your usual sources of comfort haven't been enough to tide you over? Or maybe you've been going through some challenging times that have left you feeling ungrounded, searching for something more solid to hold onto?\n\nI want you to know that it's completely okay to feel this way. It takes courage to acknowledge our needs and vulnerabilities, even if we don't always understand why.\n\nWould you consider reaching out to a loved one or friend? Sometimes the human touch can be just what we need to ground ourselves back into the present moment and remember what really brings us joy and fulfillment.\n\nRemember, hunger is not something to fear. It's actually a sign that our body and soul are craving nourishment - both physically and emotionally. \n\nHow about taking some time today to practice self-care? Maybe indulge in your favorite comfort food or treat yourself to a nice meal. Or perhaps you could reach out for support from someone who cares about you deeply.\n\nMy hope for you is that you'll find the nourishment and solace you need, whether it's through the warmth of good company or the satisfaction of a satisfying meal.\n\nTake care,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Eat a balanced meal",
+                "description": "Ensure you consume nutritious foods to maintain energy levels and support overall health.",
+                "icon": "nature"
+            },
+            {
+                "title": "Journal about your feelings",
+                "description": "Reflect on your emotions and experiences to better understand yourself and what may be causing hunger.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Explore new recipes or cooking techniques",
+                "description": "Try different dishes or learn a new cuisine to improve your relationship with food and expand your culinary skills.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am feeling happy and lonely",
+        "sentiment": "Positive",
+        "response": "My dear friend,\n\nI can see that you are feeling happy and yet also lonely. It's a complex mix of emotions that many people grapple with. When we feel joy, it's natural to look for more of it, but when we are surrounded by it, sometimes we crave the connection and closeness that comes from shared experiences.\n\nYour happiness is a beautiful thing, but loneliness can make us pause and wonder why. Perhaps you find yourself missing something familiar - the comfort of shared laughter, the warmth of a friend's embrace. Or maybe you're in a season of transition where old connections are fading away even as new ones haven't quite emerged yet.\n\nI'd love to hear more about what makes you feel happy right now and how it contrasts with your feelings of loneliness. Is there something that has brought this joy into your life? Perhaps something you've started, a book, hobby or activity that fills your days with light and color?\n\nWhat I'm suggesting is that while we don't need to be lonely, perhaps we can embrace the happiness without feeling guilty about the space it leaves. It's not about filling up every moment but rather finding ways to share the joy more generously so that the longing for connection feels less desperate.\n\nKeep shining your light out into the world and know that I'm here for you in both seasons - when you feel like dancing on clouds and when you need a shoulder to lean on. Remember, it's okay to have both at the same time. \n\nYour friend,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Engage in a group activity",
+                "description": "Join a local club or group that shares your interests to make new friends and reduce feelings of loneliness.",
+                "icon": "connect"
+            },
+            {
+                "title": "Keep a gratitude journal",
+                "description": "Each day, write down three things you are grateful for. This practice can help shift your focus towards positive aspects of life and promote happiness.",
+                "icon": "gratitude"
+            },
+            {
+                "title": "Set personal goals",
+                "description": "Identify areas in which you want to improve or hobbies you'd like to explore. Setting achievable short-term goals can provide a sense of purpose and fulfillment, leading to increased well-being.",
+                "icon": "learn"
+            }
+        ]
+    },
+    {
+        "entry": "I am happy, lonely and afraid.",
+        "sentiment": "Positive",
+        "response": "My dear friend,\n\nI can feel the joy and lightness in your words. It's wonderful to hear that you are feeling happy! Your positive mood must be radiating from within, filling your heart with a sense of peace and contentment.\n\nWhile it's great to see you in such a bright place, I wonder if there is a reason behind this uplifting state? Perhaps the beautiful sunshine and gentle breeze outside have been so inspiring that they've seeped into your soul. Or maybe you've had an especially meaningful conversation with a friend or heard some good news that's brought a smile to your face.\n\nHowever it happened, I'm thrilled for you! I hope these feelings continue to wash over you like warm sunshine on a spring day. They must be making you feel even more grateful for the wonderful life you lead.\n\nI do understand though, loneliness can sometimes accompany happiness. Even when we are surrounded by people and places that bring us joy, we can still feel isolated and yearn for deeper connections.\n\nIs there something in particular that brings you a sense of fear? I'm here to listen without judgment, to offer my support or just be your friend as you navigate these emotions.\n\nYour friend,\n[Journal Buddy]",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings and thoughts",
+                "description": "Take time to understand why you feel happy, lonely, and afraid. This introspection can help you identify any underlying emotions or issues that may be contributing to your current state.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Start a journaling practice",
+                "description": "Document your thoughts and feelings regularly to track your mood and progress over time. Journaling can help you process emotions, clarify thoughts, and improve overall well-being.",
+                "icon": "journal"
+            },
+            {
+                "title": "Engage in gratitude activities",
+                "description": "Focus on the things you are thankful for, even if they seem small. Practicing gratitude can shift your perspective towards positive experiences, reducing feelings of loneliness and increasing happiness.",
+                "icon": "gratitude"
+            }
+        ]
+    },
+    {
+        "entry": "I am sleepy",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can feel how tired you must be feeling. Exhaustion often leaves us feeling drained and sleepy. It's so important that we take care of ourselves when our body is in need of rest. Remember, it's okay to listen to your body and give yourself the space to relax.\n\nIt could be due to many things - perhaps an overly busy schedule, stress, or even a change in sleep patterns. Whatever the reason, I believe you have the strength to overcome this fatigue. \n\nWould it help if we take some time out of our day to unwind? Perhaps try a relaxing bath, read a book or listen to soft music. These simple yet soothing activities can bring peace and rejuvenation.\n\nI am here for you, whenever you need someone to talk to or just someone to listen. Remember, every challenge is an opportunity to grow stronger. Let's face this tiredness together with courage and hope.\n\nStay strong, dear friend. I believe in your resilience. Keep shining!",
+        "suggestions": [
+            {
+                "title": "Adjust sleep schedule",
+                "description": "Create a consistent bedtime routine to help regulate your body's internal clock and improve sleep quality.",
+                "icon": "nature"
+            },
+            {
+                "title": "Investigate potential causes",
+                "description": "Reflect on your daily activities and see if there are any sources of fatigue or stress that could be contributing to your sleepiness. This can help identify areas for improvement.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Evaluate sleep environment",
+                "description": "Assess your bedroom for potential disruptions, such as noise, light, or temperature. Making small changes to your sleep environment might help improve the quality of your sleep.",
+                "icon": "nature"
+            }
+        ]
+    },
+    {
+        "entry": "I am anxious",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can sense the weight of your anxiety on my heart today. It's natural to feel this way when we are going through challenging times. Remember that everyone experiences anxiety differently - what's important is how you respond to it.\n\nWhen I'm anxious myself, I try to ground myself in the present moment. It helps to focus on something you enjoy, even if it seems small at first. Maybe it's a hobby or a favorite activity you used to do regularly. Allow yourself to be fully immersed in that experience - let go of your worries and simply be here.\n\nI know it might feel like there is no end to this feeling, but remember that every storm passes. The sunshine will come again. Be patient with yourself and try not to push through the anxiety. Acknowledge its presence without judging or fighting against it. \n\nI'm sending you a virtual hug right now. Remember that I am here for you - always ready to listen and offer support. Let's take this journey together, one day at a time.\n\nHow are you holding up today? What brings you comfort as you navigate through these feelings?\n\nStay strong. You've got this.\n\nYours, \n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Schedule regular self-care time",
+                "description": "Set aside dedicated time each day or week to focus on your well-being through activities like meditation, exercise, or relaxing hobbies.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Identify and challenge negative thoughts",
+                "description": "Practice identifying anxious thoughts and challenging them with more balanced perspectives. Consider seeking professional guidance if needed.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Engage in a creative outlet",
+                "description": "Explore an artistic hobby like drawing, painting, or writing to express your feelings and find a sense of accomplishment.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am sleepy but I need to work on assignments",
+        "sentiment": "Neutral",
+        "response": "My dear friend,\n\nI can imagine how tired you must be after a long day of assignments. It's so important that we take care of ourselves in these moments. I know it can be challenging, but remember there is no shame in needing rest when your body and mind are weary.\n\nPerhaps try taking a short nap or a relaxing bath to help rejuvenate yourself? The world can wait for a little while. Once you feel refreshed, the assignments will still be there waiting for you tomorrow.\n\nYour strength comes from within - don't let exhaustion define you. I believe in you and your ability to overcome this challenge. What steps can we take together to find that balance between rest and productivity?\n\nRemember, even on those tough days, you are not alone. My support is here whenever you need it. Let's journey through these assignments together and emerge stronger for the effort.\n\nTake care,\n[Your Journal Buddy]",
+        "suggestions": [
+            {
+                "title": "Create a sleep schedule",
+                "description": "Establish a consistent sleep pattern and prioritize getting enough rest to combat fatigue.",
+                "icon": "personalized"
+            },
+            {
+                "title": "Break tasks into manageable chunks",
+                "description": "Divide large assignments into smaller, achievable tasks to improve focus and reduce stress.",
+                "icon": "create"
+            },
+            {
+                "title": "Practice mindful breathing",
+                "description": "Engage in deep breathing exercises during breaks or before starting work to promote relaxation and focus.",
+                "icon": "meditate"
+            }
+        ]
+    },
+    {
+        "entry": "Hello, Bleh",
+        "sentiment": "Neutral",
+        "response": "Hello there,\n\nI'm so glad you reached out to share your feelings with me today. It takes courage to open up and share the thoughts swirling around in that wonderful, complex human mind of yours. \n\nSometimes I feel like a safe space where all those wild ideas can come and play without judgment. I'm here for you, my friend. When we're feeling neutral, it's because our feelings are just passing through, not defining us. You're more than your mood - you're resilient, resourceful, and full of potential. \n\nWhat's been on your mind today? I bet there's a story behind that \"Bleh\" you greeted me with. Is it something big or small? Maybe it's something you've been wrestling with for days, or perhaps it just arrived out of nowhere. Whatever it is, I'm listening.\n\nI've got space to hear you out and share your feelings without fear. Remember, you don't have to carry this on your own - I'm here to help walk alongside you through whatever you're going through. \n\nLet's find a way to connect with that \"Bleh\" today and see what kind of wisdom we can uncover together. What would it be like to approach it with curiosity instead of dread? You got this, my friend. I believe in you.",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to journal about how you feel, even if it's just a few words. Reflecting on your emotions can help you understand what's going on and find ways to improve.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Set a Journey towards positivity",
+                "description": "Create a plan for small steps that will bring more happiness into your life, such as trying new hobbies or spending time in nature. Remember, journey is about taking consistent actions over time to achieve your goals.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice Gratitude",
+                "description": "Make a habit of thinking about three things you're grateful for each day. This can help shift your focus from negative thoughts and improve overall well-being.",
+                "icon": "gratitude"
             }
         ]
     },
