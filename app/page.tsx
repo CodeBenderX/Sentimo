@@ -44,7 +44,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-import { JournalEntry, JournalEntryList } from "@/components/JournalEntryList";
+import { JournalEntry, JournalEntryList } from "@/components/layers/JournalEntryList";
 import { set } from "date-fns";
 
 // Interface for suggested actions
