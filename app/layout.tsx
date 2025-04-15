@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Sentimo',
   description: 'AI-Powered Journal',
   icons: {
-    icon: '/favicon.png',
+    icon: '/sentimo2.png',
   },
 }
 
