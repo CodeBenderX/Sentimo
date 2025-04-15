@@ -491,14 +491,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {aiResponse
-          .split(/\n{2,}/) // split by double line breaks (paragraphs)
-          .map((para, index) => (
-            <p key={index} className="text-[#2D3142] mb-4 leading-relaxed">
-              {para.trim()}
-            </p>
-          ))}
-
       </div>
     );
   };
