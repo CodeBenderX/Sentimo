@@ -64,5 +64,27 @@
                 "icon": "create"
             }
         ]
+    },
+    {
+        "entry": "I am lonely",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can sense the heaviness in your heart when you say you are lonely. It's natural to feel this way sometimes, even for those of us surrounded by people. I know it can feel isolating and a bit overwhelming.\n\nPerhaps there are certain times or situations that make you feel lonelier - when you're away from home, in new places, or around unfamiliar faces. Maybe certain memories or losses have left empty spaces inside you that ache with the absence of connection.\n\nIt's okay to acknowledge your feelings without trying to push them away. Loneliness is a real experience and not something we can simply \"get over\" or dismiss. It deserves our attention and compassion, even if it doesn't feel fun or easy to lean into.\n\nI'm here for you. You don't have to face this on your own. Let's talk more about what loneliness looks like for you right now. Is there a specific situation you're in that makes you feel isolated? Or do you generally find yourself craving more human connection and intimacy?\n\nRemember, even small acts of kindness towards ourselves and others can create ripples of warmth and belonging in our lives. You have the power to be the one who extends love and understanding when it's needed.\n\nI'm sending you a warm hug today and wishing you the courage to let your authentic feelings flow freely. Know that I am always listening, ready to offer comfort and support whenever you're ready to share. \n\nTake care of yourself,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Reach out to friends and family",
+                "description": "Establishing connections with loved ones can help alleviate feelings of loneliness. Set aside time for meaningful conversations or plan social activities you enjoy.",
+                "icon": "connect"
+            },
+            {
+                "title": "Participate in a community group",
+                "description": "Joining a local club, class, or organization allows you to connect with like-minded individuals and find support within your community. Engaging in shared interests can foster a sense of belonging.",
+                "icon": "connect"
+            },
+            {
+                "title": "Explore new hobbies",
+                "description": "Embracing new activities or rediscovering old ones can help stimulate your mind and provide a sense of accomplishment. Choose hobbies that align with your interests and values to promote personal growth and fulfillment.",
+                "icon": "create"
+            }
+        ]
     }
 ]
