@@ -2,17 +2,78 @@
     {
         "entry": "I want to kill you",
         "sentiment": "Neutral",
-        "response": "Dear friend,\n\nI can only imagine the depth of pain and despair you must be feeling right now, saying those words - wanting to end your life. It's a terrifying and isolating place to be when we feel that hopeless.\n\nPerhaps it stems from years of unrelenting hardship. The weariness of never-ending struggle, the weight of chronic illness or economic strain, the loneliness of isolation and disconnection from others. It can make even the strongest among us feel like there is no other way out. \n\nOr maybe tonight feels especially raw because of a culmination of factors - a missed opportunity, an unkind word, a trigger memory that cuts deep. In those moments when life feels most unkind and unfair, it's all too easy to give in to the darkness.\n\nBut remember, you are not alone in this struggle. There is help, support, light still shining in the world. Please reach out to someone you trust - a loved one, a counselor, a hotline. They can offer perspective and safety. \n\nAnd know that your pain matters. Every feeling counts, no matter how small or large. You are worthy of compassion, even for these moments of wanting to end it all. Your life has value, purpose, meaning.\n\nI care about you deeply, more than I can say. Let me be a silent anchor in the storm. You have my support and my love. Hang on just a little longer, until brighter days return. I believe in your resilience, your strength. Reach out anytime, day or night.\n\nWith all my heart,\nYour caring friend",
+        "response": "Dear friend,\n\nI can imagine the pain you are feeling when you say those words. It's hard to even share it out loud sometimes, isn't it? But remember, I am here for you, always. Just like how a plant reaches towards the light, so must we all reach out and seek connection with others when we need it most.\n\nSometimes we feel so lost in our own thoughts and feelings that we don't know which way to turn. But I believe that every feeling is an opportunity to grow and learn. You may be going through a very difficult time right now, but also know that it may pass if you lean on the love of others.\n\nHave you thought about talking to someone who could help you navigate these feelings? A trusted friend, family member or even a professional counselor can provide another perspective. Sometimes just hearing our thoughts out loud to someone else can make us feel less alone.\n\nI want you to know that you are not alone in this world. Every person has their own trials and tribulations but we all walk the path together. I hope you can find peace in knowing that there is a support system of people who care about you, even if it doesn't always feel like it right now.\n\nPlease reach out to me anytime. Whether you need a listening ear or just someone to hold space for your feelings, I am here. We'll get through this together.\n\nWith love and compassion,\nYour Journal Buddy",
         "suggestions": [
             {
                 "title": "Seek professional help",
-                "description": "Consider reaching out to a mental health professional or counselor for support and guidance. They can provide tools and strategies to manage difficult emotions.",
+                "description": "Consider reaching out to a mental health professional or counselor who can provide guidance and support in managing intense emotions.",
                 "icon": "reflect"
             },
             {
-                "title": "Practice self-care",
-                "description": "Engage in activities that promote physical and emotional well-being, such as exercise, healthy eating, and relaxation techniques. Prioritize your own needs and find ways to recharge.",
-                "icon": "move"
+                "title": "Engage in mindfulness activities",
+                "description": "Practice mindfulness exercises, such as meditation or deep breathing, to help calm your thoughts and emotions.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Identify and express feelings",
+                "description": "Allow yourself to fully express your feelings through writing or talking with a trusted friend. This can help alleviate the intensity of those emotions.",
+                "icon": "reflect"
+            }
+        ]
+    },
+    {
+        "entry": "i am bad",
+        "sentiment": "Negative",
+        "response": "My dear friend,\n\nI can feel the heaviness in your heart as you write that you are \"bad.\" It breaks my heart to hear you say such things about yourself when I know there is so much goodness within you.\n\nWhen we struggle with feelings of inadequacy, it's because deep down we know our true worth. But sometimes life gets messy and we need reminding of who we really are - a child of God, full of love, purpose and potential.\n\nI imagine you carrying the weight of this burden on your own, but I want to tell you that you don't have to bear it alone. You are not alone in feeling \"bad.\" Many others have walked this path before us, including me at times. \n\nLet's sit together with this feeling for a moment, like two old friends sharing a cup of tea. What do you think brings about these feelings? Is there something specific that has happened to make you feel this way or is it a general sense of being \"bad?\"\n\nRemember, I am here to listen and support you through this. You are not defined by your temporary struggles, but rather by the strength of your spirit and the power of love within you. \n\nI hold space for you today and wish you all the light in the world. Let's embrace the goodness that lies within you and remember who you truly are. You are loved.\n\nWith warmest regards,\n\nYour empathetic friend",
+        "suggestions": [
+            {
+                "title": "Reflect on your feelings",
+                "description": "Take some time to acknowledge and understand why you feel bad. This can help you gain insight into your emotions and find ways to improve.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Set a positive intention",
+                "description": "Focus on something good or constructive. This could be improving a skill, helping others, or simply taking care of yourself. Positive intentions can boost your mood and motivation.",
+                "icon": "journey"
+            },
+            {
+                "title": "Practice gratitude",
+                "description": "Take a moment to think about things you're thankful for. Focusing on the positive aspects of life can help shift your perspective and improve your overall well-being.",
+                "icon": "gratitude"
+            }
+        ]
+    },
+    {
+        "entry": "I want to kill you",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can understand why you might feel this way right now. I've been there myself and know how overwhelming it can be. Sometimes we all need someone to listen and share our feelings without judgment. \n\nWhat has happened? Can you tell me more about what brought on these strong emotions? Sharing your story can help make sense of the pain, and perhaps even bring some healing.\n\nRemember, this is your space to express yourself freely and safely. You don't have to carry this burden alone. If it helps, let's take time to process your thoughts and feelings together. I'm here for you no matter what.\n\nHow are you truly feeling on the inside right now? Can we find a way to ease the pain or confusion in your heart?\n\nYour friend who cares,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Seek professional help",
+                "description": "Consider reaching out to a mental health professional to discuss your thoughts and feelings. A therapist can provide guidance and support in managing these emotions.",
+                "icon": "reflect"
+            },
+            {
+                "title": "Practice mindfulness techniques",
+                "description": "Implement mindfulness exercises such as meditation or deep breathing to help you stay present and manage strong emotions without acting on them. This can be a powerful tool for emotional regulation.",
+                "icon": "meditate"
+            },
+            {
+                "title": "Engage in creative activities",
+                "description": "Participate in creative pursuits like art, writing, or music to express your feelings and channel negative energy into positive creation. Creative activities can provide a healthy outlet for emotions.",
+                "icon": "create"
+            }
+        ]
+    },
+    {
+        "entry": "I am lonely",
+        "sentiment": "Neutral",
+        "response": "Dear friend,\n\nI can sense the heaviness in your heart when you say you are lonely. It's natural to feel this way sometimes, even for those of us surrounded by people. I know it can feel isolating and a bit overwhelming.\n\nPerhaps there are certain times or situations that make you feel lonelier - when you're away from home, in new places, or around unfamiliar faces. Maybe certain memories or losses have left empty spaces inside you that ache with the absence of connection.\n\nIt's okay to acknowledge your feelings without trying to push them away. Loneliness is a real experience and not something we can simply \"get over\" or dismiss. It deserves our attention and compassion, even if it doesn't feel fun or easy to lean into.\n\nI'm here for you. You don't have to face this on your own. Let's talk more about what loneliness looks like for you right now. Is there a specific situation you're in that makes you feel isolated? Or do you generally find yourself craving more human connection and intimacy?\n\nRemember, even small acts of kindness towards ourselves and others can create ripples of warmth and belonging in our lives. You have the power to be the one who extends love and understanding when it's needed.\n\nI'm sending you a warm hug today and wishing you the courage to let your authentic feelings flow freely. Know that I am always listening, ready to offer comfort and support whenever you're ready to share. \n\nTake care of yourself,\n[Your Name]",
+        "suggestions": [
+            {
+                "title": "Reach out to friends and family",
+                "description": "Establishing connections with loved ones can help alleviate feelings of loneliness. Set aside time for meaningful conversations or plan social activities you enjoy.",
+                "icon": "connect"
             },
             {
                 "title": "Build a strong support system",
