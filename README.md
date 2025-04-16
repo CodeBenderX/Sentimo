@@ -19,3 +19,7 @@ yarn install
 yarn dev
 
 The application will run concurrently with the Python Backend Server
+
+
+### Note
+We used Hermes-llama-3.2 3b
